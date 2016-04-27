@@ -1,0 +1,41 @@
+﻿<ion-view view-title="建筑公司类型列表">
+<ion-content>
+<div class="item-input-inset" id="searchDiv">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input type="search" ng-model="keyword" placeholder="搜索">
+  </label>
+  <button class="button button-clear">
+    取消
+  </button>
+</div>
+
+<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light" style="top: 5px;">
+  <div class="tabs">
+    <a class="tab-item active" id="type1" tabindex="1"  ng-href="#/tab/teamType/1"   >
+      土建
+    </a>
+    <a class="tab-item" id="type2"  tabindex="2"   ng-href="#/tab/teamType/2"  >
+      安装
+    </a>
+    <a class="tab-item"  id="type3" tabindex="3"  ng-href="#/tab/teamType/3"  >
+      其他
+    </a>
+    <a class="tab-item"  id="type4"  tabindex="4"  ng-href="#/tab/teamType/4"  >
+      国际派遣
+    </a>
+  </div>
+</div>
+<ion-list>
+<ion-item class="item-icon-right" ng-repeat="teamType in teamtypes|filter:keyword" type="item-text-wrap" href="#/tab/teamType/{{teamType.ID}}">
+<h2>{{teamType.Name}}</h2>
+
+<i class="icon ion-chevron-right icon-accessory"></i>
+</ion-item>
+</ion-list>
+
+
+</ion-content>
+</ion-view>
+
+

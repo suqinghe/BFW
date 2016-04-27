@@ -1,0 +1,30 @@
+<ion-view view-title="我的项目">
+<ion-content>
+<div class="item-input-inset" id="searchDiv">
+	<label class="item-input-wrapper">
+		<i class="icon ion-ios-search placeholder-icon"></i>
+		<input type="search" ng-model="keyword" placeholder="搜索">
+	</label>
+	<button class="button button-clear">
+		取消
+	</button>
+</div>
+
+
+<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light" style="top: 5px;">
+	<div class="tabs">
+		<a index="$index" ng-repeat="tab in tabs"  class="tab-item {{tab.active}}"  >
+			{{tab.title}}
+		</a> 
+
+	</div>
+</div>
+
+<ion-list>
+<ion-item class="item-icon-right" ng-repeat="prj in projects|filter:keyword" type="item-text-wrap" >
+<h2>{{prj.Name}}</h2> 
+</ion-item>
+</ion-list>
+
+</ion-content>
+</ion-view>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>工人列表</title>
+	<link href="../../css/style.css" rel="stylesheet" />
+	<link href="../../css/api.css" rel="stylesheet" />
+	<link href="../../ionic/css/ionic.css" rel="stylesheet" />
+	<link href="../../ionic/css/ionicons.min.css" rel="stylesheet" />
+
+</head>
+<body>
+	<header class="border-b subheader"  > 
+		<b tapmode="hover" onclick="api.closeWin();" class="ic-back"></b>
+		<div class="title" >甲方评价</div>
+	</header>
+	<div id="mainContent">
+		<div class="list">
+			<div class="item item-divider">
+				甲方评价
+			</div>
+
+			<a class="item item-icon-right" href="#">
+				工程进度
+				<i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i>
+			</a>
+			<a class="item item-icon-right" href="#">
+				工程质量
+				<i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i>
+			</a>
+			<a class="item item-icon-right" href="#">
+				安全生产
+				<i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i>
+			</a>
+			<a class="item item-icon-right" href="#">
+				合作诚信
+				<i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i><i class="icon ion-star"></i>
+			</a>
+
+			<div class="item item-divider">
+				评价内容
+			</div>
+			<span class="item-remark" style="width: 100%">
+				<p>整体进度还是挺好的</p>
+				<p>服务很到位</p>
+				<p>质量不错</p>
+			</span>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function () {
+		var winHeight = api.winHeight;
+		var headerHeight = api.pageParam.headerHeight;
+		var searchDiv = 0;// $api.dom('#searchDiv').offsetHeight;
+		$api.css($api.dom('#mainContent'), 'overflow: auto;height: ' + (winHeight - headerHeight - searchDiv) + 'px;');
+	};
+</script>

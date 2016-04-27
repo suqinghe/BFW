@@ -1,0 +1,78 @@
+<ion-view view-title="发布项目">
+<ion-content>
+<form novalidate ng-controller="ProjectCtrl">
+	<label class="item item-input  ">
+		<span class="input-label">项目名称</span>
+		<input type="text" placeholder="项目名称" ng-model="project.Name">
+	</label>
+	<label class="item item-input  ">
+		<span class="input-label">启动时间</span>
+		<input type="text" placeholder="请选择" ng-model="project.StartDate">
+	</label>
+	<label class="item item-input  ">
+		<span class="input-label">结束时间</span>
+		<input type="text" placeholder="请选择" ng-model="project.EndDate">
+	</label>
+	<label class="item item-input  ">
+		<span class="input-label">招聘截止时间</span>
+		<input type="text" placeholder="请选择" ng-model="project.RecruitEndDate">
+	</label>
+	<div class="item item-divider">
+		项目地址
+	</div>
+	<label class="item item-input  ">
+		<span class="input-label">省</span>
+		<input type="text" placeholder="请选择" ng-model="project.Province">
+	</label>
+	<label class="item item-input  ">
+		<span class="input-label">市</span>
+		<input type="text" placeholder="请选择" ng-model="project.City">
+	</label>
+	<label class="item item-input  ">
+		<span class="input-label">区</span>
+		<input type="text" placeholder="请选择" ng-model="project.Area">
+	</label>
+	<label class="item item-input  ">
+		<span class="input-label">街道</span>
+		<input type="text" placeholder="街道" ng-model="project.Street">
+	</label>
+
+	<div class="item item-divider">
+	</div>
+	<label class="item item-input  ">
+		<span class="input-label">薪资/价格</span>
+		<input type="text" placeholder="0为面议" ng-model="project.Salary">
+	</label>
+	<label class="item item-input  ">
+		<span class="input-label">招工类型</span>
+		<select  ng-model="Types.value" ng-options="v for v in Types.values" >
+		</select>
+	</label>
+	<label class="item item-input  ">
+		<span class="input-label">项目估价</span>
+		<input type="text" placeholder="输入项目价格" ng-model="project.TotalPrice">
+	</label>
+
+
+	<div class="item item-divider">
+		项目描述
+	</div>
+	<textarea placeholder="输入项目描述"  rows="3" ng-model="project.Description"></textarea>
+
+	<div class="item item-divider">
+		员工承诺要求
+	</div>
+	<textarea placeholder="输入员工承诺要求" rows="3" ng-model="project.LaborerRequirement"></textarea>
+
+	<div class="item item-divider">
+		备注
+	</div>
+	<textarea placeholder="输入备注"  rows="3" ng-model="project.Remark"></textarea>
+	<div class="padding">
+		<button class="button button-full button-balanced" ng-click="publish()">发布</button>
+		<button class="button button-block button-calm"  ng-click="reset()">重置</button>
+	</div>
+
+</form>
+</ion-content>
+</ion-view>

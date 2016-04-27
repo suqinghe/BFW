@@ -1,0 +1,30 @@
+<ion-view view-title="项目列表">
+<ion-nav-buttons side="right">
+<a class="button ion-plus" ng-href="#/tab/addproject">
+  发布
+</a>
+</ion-nav-buttons>
+<ion-content>
+<div class="item-input-inset" id="searchDiv">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input type="search" ng-model="keyword" placeholder="搜索">
+  </label>
+  <button class="button button-clear">
+    取消
+  </button>
+</div>
+
+<ion-list>
+<ion-item class="item-icon-right" ng-repeat="project in projects|filter:keyword" type="item-text-wrap"
+href="#/tab/project/{{project.ID}}">
+<h2>{{project.Name}}</h2>
+<p>发布公司：{{project.CompanyName}}</p>
+<p>截止时间：{{project.RecruitEndDate}}</p>
+<p>招聘状态：{{project.Status}}</p>
+<i class="icon ion-chevron-right icon-accessory"></i>
+</ion-item>
+</ion-list>
+</ion-content>
+</ion-view>
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+  <title>公司列表</title>
+  <link href="../../css/style.css" rel="stylesheet" />
+  <link href="../../css/api.css" rel="stylesheet" />
+  <link href="../../ionic/css/ionic.css" rel="stylesheet" />
+  <link href="../../ionic/css/ionicons.min.css" rel="stylesheet" />
+  <style type="text/css">
+    .item_show{
+      display: block;
+    }
+    .item_hidden{
+      display: none;
+    }
+    .item-standardRemark
+    {
+     float: right;
+     color: #aaa;
+     font-size: 14px; 
+     border-bottom: solid 1px gray;
+     padding:10px;
+     background-color:#ffffff;
+   }
+ </style>
+</head>
+<body>
+  <header class="border-b subheader"  > 
+    <b tapmode="hover" onclick="api.closeWin();" class="ic-back"></b>
+    <div class="title" id="title" ></div>
+  </header>
+  <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light"  >
+    <div class="tabs" style="margin-top:18px;">
+      <a class="tab-item active" id="standard1" tabindex="1" onclick="randomSwitchTab(this)"  >操作规范</a>
+      <a class="tab-item" id="standard2"  tabindex="2"  onclick="randomSwitchTab(this)" >工艺标准</a>
+      <a class="tab-item"  id="standard3" tabindex="3"  onclick="randomSwitchTab(this)" >质量标准</a>
+    </div>
+  </div>
+  <div id="main" style="margin-top:50px;">
+    <div class="item item-text-wrap item_show"  id="divstandard1">
+      <!-- <span class="item-standardRemark"></span> -->
+    </div>
+    <div class="item item-text-wrap item_hidden"  id="divstandard2">
+      <!-- <span class="item-standardRemark"></span> -->
+    </div>
+    <div class="item item-text-wrap item_hidden"  id="divstandard3">
+      <!-- <span class="item-standardRemark"></span> -->
+    </div>
+  </div>
+
+</body>
+</html>
+<script src="../../script/api.js"></script>
+<script type="text/javascript">
+
+  apiready = function () {
+    var h = api.winHeight;
+    var headerHeight = $api.dom('header').offsetHeight;
+    $api.css($api.dom('#main'), 'overflow: auto;height: ' + (h - headerHeight) + 'px;');
+
+    initTeamStandards();
+  };
+
+  function initTeamStandards()
+  {
+    var teamType = findteamTypeById();
+
+    $api.text($api.dom('#title'),teamType.Name);    
+    $api.text($api.dom('#divstandard1'),teamType.OperationStandard);
+    $api.text($api.dom('#divstandard2'),teamType.TechnologicalStandard);
+    $api.text($api.dom('#divstandard3'),teamType.QualityStandard);
+  }
+
+  // 随意切换按钮
+  function randomSwitchTab( tag ) {
+    var current = $api.dom('.tabs a.active');
+    if( tag == current) return;
+    $api.removeCls(current,'active');
+    $api.addCls( tag, 'active');
+
+    var currentDiv = $api.dom('#main div.item_show');
+    $api.removeCls(currentDiv,'item_show');
+    $api.addCls(currentDiv,'item_hidden');
+
+    var currentDivId = 'div' + tag.id;
+    var tagDiv = $api.dom('#'+currentDivId);
+    $api.removeCls(tagDiv,'item_hidden');
+    $api.addCls(tagDiv,'item_show');
+
+  }
+
+
+  function findteamTypeById() {
+    var allComps = $api.getStorage('allteamType');
+    var currentId = $api.getStorage('currentteamTypeId');
+    for (var i = 0; i < allComps.length; i++) {
+      if (allComps[i].ID == currentId) {
+        return allComps[i];
+        break;
+      }
+    }
+
+    return null;
+  }
+</script>

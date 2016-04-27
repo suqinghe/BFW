@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>工人列表</title>
+	<link href="../../css/style.css" rel="stylesheet" />
+	<link href="../../css/api.css" rel="stylesheet" />
+	<link href="../../ionic/css/ionic.css" rel="stylesheet" />
+	<link href="../../ionic/css/ionicons.min.css" rel="stylesheet" />
+
+</head>
+<body>
+	<header class="border-b subheader"  > 
+		<b tapmode="hover" onclick="api.closeWin();" class="ic-back"></b>
+		<div class="title" >施工单位成员</div>
+	</header>
+	<div class="bar bar-header item-input-inset" id="searchDiv">
+		<label class="item-input-wrapper">
+			<i class="icon ion-ios-search placeholder-icon"></i>
+			<input type="search" placeholder="搜索">
+		</label>
+		<button class="button button-clear">
+			取消
+		</button>
+	</div>
+	<div id="mainContent">
+		<div class="list" id="laborerList">
+			<a href="#" class="item">施工单位成员1<span class="item-note">13480231001</span></a>
+			<a href="#" class="item">施工单位成员2<span class="item-note">13480231002</span></a>
+			<a href="#" class="item">施工单位成员3<span class="item-note">13480231003</span></a>
+			<a href="#" class="item">施工单位成员4<span class="item-note">13480231004</span></a>
+			<a href="#" class="item">施工单位成员5<span class="item-note">13480231005</span></a>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function () {
+		var winHeight = api.winHeight;
+		var headerHeight = api.pageParam.headerHeight;
+		var searchDiv = $api.dom('#searchDiv').offsetHeight;
+		$api.css($api.dom('#mainContent'), 'overflow: auto;height: ' + (winHeight - headerHeight - searchDiv) + 'px;');
+	};
+</script>

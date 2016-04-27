@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css" />
+
+    <link href="../../ionic/css/ionic.min.css" rel="stylesheet" />
+    <link href="../../ionic/css/ionicons.min.css" rel="stylesheet" />
+    <link href="../../css/api.css" rel="stylesheet" />
+    <link href="../../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="border-b subheader" >
+        <b tapmode="hover" onclick="api.closeWin();" class="ic-back"></b>
+        <div class="title">施工单位详情</div>
+    </header>
+    <div id="main" class="flex-con" ng-app="myApp" ng-controller="formCtrl">
+        <div class="item item-avatar">
+            <img src="../../image/bg_user.png" />
+            <h2>{{team.Principal}}</h2>
+            <p>{{team.Mobile}}</p>
+        </div>
+        <div class="list">
+            <a href="#" class="item">施工单位负责人<span class="item-note">{{team.Principal}}</span></a>
+            <a href="#" class="item">施工单位类型<span class="item-note">{{team.TypeName}}</span></a>
+
+            <div class="item item-divider"></div>
+            <a class="item" href="#">
+                星级
+                <span class="item-note">
+                    {{team.Level}}
+                </span>
+            </a>
+            <a href="#" class="item">地址<span class="item-note">{{team.Address}}</span></a>
+
+            <div class="item item-divider">
+            </div>
+            <a class="item item-button-right" onclick="showteamTypeStrand(1)">
+                施工单位成员
+                <button class="button  button-clear  button-light"  >
+                    <i class="icon  ion-chevron-right"></i>
+                </button>
+            </a>
+            <a class="item item-button-right" onclick="showteamTypeStrand(2)">
+                过往工程
+                <button class="button  button-clear  button-light">
+                    <i class="icon  ion-chevron-right"></i>
+                </button>
+            </a>
+            <a class="item item-button-right" onclick="showteamTypeStrand(3)">
+                甲方评价
+                <button class="button  button-clear  button-light">
+                    <i class="icon  ion-chevron-right"></i>
+                </button>
+            </a>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../../ionic/js/angular/angular.js"></script>
+<script src="../../script/api.js"></script>
+<script type="text/javascript">
+
+
+    var app = angular.module('myApp', []);
+    app.controller('formCtrl', function ($scope) {
+        $scope.team = findteamById();
+    });
+
+    apiready = function () {
+        var h = api.winHeight;
+        var headerHeight = $api.dom('header').offsetHeight;
+        $api.css($api.dom('#main'), 'overflow: auto;height: ' + (h - headerHeight) + 'px;');
+    };
+
+
+    function showteamTypeStrand(tabIndex) {
+        var url = 'team_laborer.html';
+        if(tabIndex == 2)
+            url = 'team_projects.html';
+        else if(tabIndex == 3)
+            url = 'team_evaluations.html';
+
+        api.openWin({
+            name: 'team' + tabIndex,
+            url: url,
+            bgColor: '#f2f2f2',
+            bounces: false,
+            scrollToTop: true 
+        });
+    }
+    
+
+    function findteamById() {
+        var allComps = $api.getStorage('allteam');
+        var currentId = $api.getStorage('currentteamId');
+        for (var i = 0; i < allComps.length; i++) {
+            if (allComps[i].ID == currentId) {
+                return allComps[i];
+                break;
+            }
+        }
+
+        return null;
+    }
+
+</script>

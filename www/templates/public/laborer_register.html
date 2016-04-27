@@ -1,0 +1,52 @@
+<ion-view view-title="劳务注册">
+<ion-content >
+<div  class="list"  id="main"  >
+	<form novalidate>
+		<div class="list">
+			<label class="item item-input  ">
+				<span class="input-label">手机号码</span>
+				<input type="text" placeholder="必填" ng-model="laborer.Tel">
+			</label>
+			<label class="item item-input  ">
+				<span class="input-label">手机验证码</span>
+				<input type="text" placeholder="必填" ng-model="laborer.VerifyCode">
+			</label>
+			<label class="item item-input  ">
+				<span class="input-label">密码</span>
+				<input type="password" placeholder="必填" ng-model="laborer.Password">
+			</label>
+
+
+			<label class="item item-input  ">
+				<span class="input-label">联系人</span>
+				<input type="text" placeholder="必填" ng-model="laborer.Name">
+			</label>
+			<label class="item item-input  ">
+				<span class="input-label">身份证</span>
+				<input type="text" placeholder="必填" ng-model="laborer.IDCard">
+			</label>
+			<div class="item item-divider">
+				项目描述
+			</div>
+			<textarea placeholder="输入项目描述"  rows="3" ng-model="laborer.Skills" style="width: 100%;"></textarea>
+
+			<div class="item item-checkbox">
+				<label class="checkbox">
+					<input type="checkbox" checked="">
+				</label>
+				同意<a href="">超能国际用户协议</a>并注册
+			</div>
+		</div>
+
+		<div class="padding">
+			<button class="button button-full button-balanced"  ng-click="register_laborer()">注册</button>
+			<button class="button button-full button-calm"  ng-click="reset_laborer()">重置</button>
+		</div>
+
+	</form>
+
+</div>
+</ion-content>
+</ion-view>
+
+

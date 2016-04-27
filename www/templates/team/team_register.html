@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>title</title>
+	<link rel="stylesheet" type="text/css" href="api.css" />
+
+	<link href="../../ionic/css/ionic.min.css" rel="stylesheet" />
+	<link href="../../ionic/css/ionicons.min.css" rel="stylesheet" />
+	<link href="../../css/api.css" rel="stylesheet" />
+	<link href="../../css/style.css" rel="stylesheet" />
+</head>
+<body>
+	<header class="border-b subheader" >
+		<b tapmode="hover" onclick="api.closeWin();" class="ic-back"></b>
+		<div class="title">施工单位注册</div>
+	</header>
+
+	<div ng-app="myApp" class="list"  id="main"  ng-controller="teamRegCtrl">
+		<form novalidate>
+			<label class="item item-input  ">
+				<span class="input-label">联系人</span>
+				<input type="text" placeholder="必填" ng-model="team.Principal">
+			</label>
+			<label class="item item-input  ">
+				<span class="input-label">手机号码</span>
+				<input type="text" placeholder="必填" ng-model="team.Mobile">
+			</label>
+			<label class="item item-input  ">
+				<span class="input-label">手机验证码</span>
+				<input type="text" placeholder="必填" ng-model="team.VerifyCode">
+			</label>
+			<label class="item item-input  ">
+				<span class="input-label">密码</span>
+				<input type="password" placeholder="必填" ng-model="team.Password">
+			</label>
+
+			<div class="item item-divider">
+			</div>
+			<label class="item item-input  ">
+				<span class="input-label">单位名称</span>
+				<input type="text" placeholder="必填" ng-model="team.Name">
+			</label>
+			<label class="item item-input  ">
+				<span class="input-label">技能选择</span>
+				<select ng-model="team.TypeId.value" ng-options="y.value for (x, y) in Types">
+				</select>
+			</label>
+			<label class="item item-input  ">
+				<span class="input-label">联系地址</span>
+				<input type="text" placeholder="必填" ng-model="team.Address">
+			</label>
+
+			<div class="item item-checkbox">
+				<label class="checkbox">
+					<input type="checkbox" checked="">
+				</label>
+				同意<a href="">超能国际用户协议</a>并注册
+			</div>
+
+			<div class="padding">
+				<button class="button button-full button-balanced" ng-click="register()">注册</button>
+				<button class="button button-block button-calm"  ng-click="reset()">重置</button>
+			</div>
+			
+		</form>
+		
+	</div>
+
+</body>
+
+</html>
+<script src="../../ionic/js/angular/angular.js"></script>
+<script src="../../script/api.js"></script>
+<script src="../../script/app.js"></script>
+<script type="text/javascript">
+
+	var app = angular.module('myApp', []);
+	app.controller('teamRegCtrl', function($scope) {
+		$scope.team = {};
+		$scope.Types = [{value : "木工班", key : 1},{value : "瓦工班", key : 2}]; 
+		$scope.intilize = function() {
+			$scope.team = {
+				"TypeId": 1,
+				"Name": '测试施工单位'+$app.getRandomNum(10,100)+ '队',
+				"Mobile": $app.getRandomTel(),
+				"Level": $app.getRandomNum(1,5),
+				"Address": "深圳市南山区科技" + $app.getRandomNum(10,100) + "路",
+				"Password": '123456',
+				"VerifyCode":$app.getRandomNum(1000,9999),
+				"Principal":$app.getRandomName(),
+				"MemberCount":$app.getRandomNum(10,100)
+			};
+		}; 
+		$scope.reset =function(){
+			$scope.team = {
+				"TypeId":"",
+				"Name":"",
+				"Mobile":"",
+				"Level":"",
+				"Address":"",
+				"Password":"",
+				"VerifyCode":"",
+				"Principal":"",
+				"MemberCount":0
+			};
+		};
+		$scope.reset = function() {
+			$scope.team ={
+				"Name": "",
+				"Tel": "",
+				"IDCard": "", 
+				"Login": '',
+				"Password": '',
+				"VerifyCode":"",
+				"Skills":""
+			};
+		};
+		$scope.register = function(){
+			api.confirm({
+				title: '注册确认',
+				msg: '你确认注册该施工单位吗？',
+				buttons: ['确定', '取消']
+			},function( ret, err ){
+				if( ret && ret.buttonIndex == 1){
+					var url = 'http://api.szsei.com/api/team/add?' + $app.jsonToString($scope.team);
+					$api.get(url,function(ret){
+						if(ret.IsSuccessed)
+						{
+							api.alert({
+								title: '成功确认', 
+								msg: '施工单位注册成功，即将跳转到主页'
+							});
+
+							api.openWin({
+								name: 'index',
+								url: '../../index.html',
+								bounces: false
+							});
+						}else
+						{
+							alert(JSON.ReturnCode);
+						}
+					},'json');
+				}
+			});
+		};
+		$scope.intilize();
+	});
+
+	apiready = function () {
+		var h = api.winHeight;
+		var w = api.winWidth;
+		var headerHeight = $api.dom('header').offsetHeight;
+		$api.css($api.dom('#main'), 'overflow: auto;height: ' + (h - headerHeight) + 'px;');
+		$api.css($api.dom('#btnDiv'),'width:'+w+'px;');
+	};
+
+</script>

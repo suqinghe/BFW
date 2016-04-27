@@ -1,0 +1,53 @@
+<ion-view view-title="施工单位注册">
+<ion-content >
+<div  class="list"  id="main"  >
+	<form novalidate> 
+		<label class="item item-input  ">
+			<span class="input-label">联系人</span>
+			<input type="text" placeholder="必填" ng-model="team.Principal">
+		</label>
+		<label class="item item-input  ">
+			<span class="input-label">手机号码</span>
+			<input type="text" placeholder="必填" ng-model="team.Mobile">
+		</label>
+		<label class="item item-input  ">
+			<span class="input-label">手机验证码</span>
+			<input type="text" placeholder="必填" ng-model="team.VerifyCode">
+		</label>
+		<label class="item item-input  ">
+			<span class="input-label">密码</span>
+			<input type="password" placeholder="必填" ng-model="team.Password">
+		</label>
+
+		<div class="item item-divider">
+		</div>
+		<label class="item item-input  ">
+			<span class="input-label">单位名称</span>
+			<input type="text" placeholder="必填" ng-model="team.Name">
+		</label>
+		<label class="item item-input  ">
+			<span class="input-label">技能选择</span>
+			<select  ng-model="SkillTypes.value" ng-options="v for v in SkillTypes.values" >
+			</select>
+		</label>
+		<label class="item item-input  ">
+			<span class="input-label">联系地址</span>
+			<input type="text" placeholder="必填" ng-model="team.Address">
+		</label>
+
+		<div class="item item-checkbox">
+			<label class="checkbox">
+				<input type="checkbox" checked="">
+			</label>
+			同意<a href="">超能国际用户协议</a>并注册
+		</div>
+		<div class="padding">
+			<button class="button button-full button-balanced" ng-click="register_team()">注册</button>
+			<button class="button button-block button-calm"  ng-click="reset_team()">重置</button>
+		</div>
+	</form>
+</div>
+</ion-content>
+</ion-view>
+
+

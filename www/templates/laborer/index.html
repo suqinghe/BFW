@@ -1,0 +1,24 @@
+<ion-view view-title="劳务列表">
+  <ion-content>
+    <div class="item-input-inset" id="searchDiv">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" ng-model="keyword" placeholder="搜索">
+      </label>
+      <button class="button button-clear">
+        取消
+      </button>
+    </div>
+
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="laborer in laborers|filter:keyword" type="item-text-wrap"
+                href="#/tab/laborer/{{laborer.ID}}">
+        {{laborer.Name}}
+<span class="item-note">
+	{{laborer.Tel}}
+</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

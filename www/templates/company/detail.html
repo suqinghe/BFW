@@ -1,0 +1,41 @@
+<ion-view view-title="公司详情">
+  <ion-content>
+    <div class="item item-avatar">
+      <img ng-src="img/bg_user.png"/>
+      <h2>{{company.Name}}</h2>
+      <p>{{company.Principal}}</p>
+    </div>
+    <div class="list">
+      <a href="#" class="item">公司名称<span class="item-note">{{company.Name}}</span></a>
+      <a href="#" class="item">组织机构代码<span class="item-note">{{company.Code}}</span></a>
+
+      <div class="item item-divider"></div>
+      <a class="item item-icon-left" href="#">
+        <i class="icon ion-person"></i>
+        联系人
+		<span class="item-note">
+			{{company.Principal}}
+		</span>
+      </a>
+      <a class="item item-icon-left" href="#">
+        <i class="icon ion-ios-telephone"></i>
+        手机
+		<span class="item-note">
+			{{company.Mobile}}
+		</span>
+      </a>
+      <a class="item item-icon-left" href="#">
+        <i class="icon ion-email"></i>
+        邮箱
+		<span class="item-note">
+			{{company.Email}}
+		</span>
+      </a>
+      <div class="item item-divider">
+      </div>
+      <a href="#" class="item">公司类型<span class="item-note">{{company.Type}}</span></a>
+      <a href="#" class="item">网址<span class="item-note">{{company.WebSite}}</span></a>
+      <a href="#" class="item">地址<span class="item-note">{{company.Address}}</span></a>
+    </div>
+  </ion-content>
+</ion-view>

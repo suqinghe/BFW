@@ -1,0 +1,39 @@
+<ion-view view-title="劳务详情">
+  <ion-content>
+    <div class="item item-avatar">
+      <img ng-src="img/bg_user.png"/>
+      <h2>{{laborer.Name}}</h2>
+      <p>{{laborer.Tel}}</p>
+    </div>
+    <div class="list">
+
+      <div class="item item-divider"></div>
+      <a class="item item-icon-left" href="#">
+        <i class="icon ion-person"></i>
+        姓名
+		<span class="item-note">
+			{{laborer.Name}}
+		</span>
+      </a>
+      <a class="item item-icon-left" href="#">
+        <i class="icon ion-ios-telephone"></i>
+        手机
+        <p class="item-note">
+          {{laborer.Tel}}
+        </p>
+      </a>
+      <a class="item item-icon-left" href="#">
+        <i class="icon ion-card"></i>
+        身份证
+		<span class="item-note">
+			{{laborer.IDCard}}
+		</span>
+      </a>
+      <a class="item item-icon-left" href="#">
+        <i class="icon ion-settings"></i>
+        技能简介
+      </a>
+      <span class="item-remark">{{laborer.Skills}}</span>
+    </div>
+  </ion-content>
+</ion-view>

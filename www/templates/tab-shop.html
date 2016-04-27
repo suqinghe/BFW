@@ -1,0 +1,16 @@
+<ion-view view-title="建材商城">
+<ion-content>
+<ion-list>
+<ion-item class="item-avatar item-icon-right" ng-repeat="product in products"
+type="item-text-wrap" href="#/tab/product/{{product.id}}">
+<img  ng-src="{{product.image}}" alt="{{product.name}}">
+<h2>{{product.name}}</h2>
+<p><strong>付款方式：</strong>{{product.paytype}}</p>
+<p><strong>交货方式：</strong>{{product.shiptype}}</p>
+<p><strong>起订量：</strong>{{product.qty}}{{product.unit}}</p> 
+
+<i class="icon ion-chevron-right icon-accessory"></i>
+</ion-item>
+</ion-list>
+</ion-content>
+</ion-view>

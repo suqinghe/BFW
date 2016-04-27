@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>过往项目</title>
+	<link href="../../css/style.css" rel="stylesheet" />
+	<link href="../../css/api.css" rel="stylesheet" />
+	<link href="../../ionic/css/ionic.css" rel="stylesheet" />
+	<link href="../../ionic/css/ionicons.min.css" rel="stylesheet" />
+
+</head>
+<body>
+	<header class="border-b subheader"  > 
+		<b tapmode="hover" onclick="api.closeWin();" class="ic-back"></b>
+		<div class="title" >过往项目</div>
+	</header>
+	<div class="bar bar-header item-input-inset" id="searchDiv">
+		<label class="item-input-wrapper">
+			<i class="icon ion-ios-search placeholder-icon"></i>
+			<input type="search" placeholder="搜索">
+		</label>
+		<button class="button button-clear">
+			取消
+		</button>
+	</div>
+	<div id="mainContent">
+		<div class="list" id="laborerList">
+			<a href="#" class="item">
+				<h2>项目名称1</h2>
+				<p>发布公司：公司名称1</p>
+				<p>项目状态：已完成</p>
+			</a>
+			<a href="#" class="item">
+				<h2>项目名称2</h2>
+				<p>发布公司：公司名称2</p>
+				<p>项目状态：已完成</p>
+			</a>
+			<a href="#" class="item">
+				<h2>项目名称3</h2>
+				<p>发布公司：公司名称3</p>
+				<p>项目状态：已完成</p>
+			</a>
+			<a href="#" class="item">
+				<h2>项目名称4</h2>
+				<p>发布公司：公司名称4</p>
+				<p>项目状态：已完成</p>
+			</a>
+			<a href="#" class="item">
+				<h2>项目名称5</h2>
+				<p>发布公司：公司名称5</p>
+				<p>项目状态：已完成</p>
+			</a>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function () {
+		var winHeight = api.winHeight;
+		var headerHeight = api.pageParam.headerHeight;
+		var searchDiv = $api.dom('#searchDiv').offsetHeight;
+		$api.css($api.dom('#mainContent'), 'overflow: auto;height: ' + (winHeight - headerHeight - searchDiv) + 'px;');
+	};
+</script>

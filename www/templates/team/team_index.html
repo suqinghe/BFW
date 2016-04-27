@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>施工单位列表</title>
+    <link href="../../css/style.css" rel="stylesheet" />
+    <link href="../../css/api.css" rel="stylesheet" />
+    <link href="../../ionic/css/ionic.css" rel="stylesheet" />
+    <link href="../../ionic/css/ionicons.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .button-margin{
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="border-b subheader" >
+        <b tapmode="hover" onclick="api.closeWin();" class="ic-back"></b>
+        <div class="title" style="line-height: 42px;">施工单位列表</div>
+    </header>
+    <div class="bar bar-header item-input-inset" id="searchDiv">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="搜索">
+        </label>
+        <button class="button button-clear">
+            取消
+        </button>
+    </div>
+    
+    <div class="content padding"  style="text-align: center;margin: 0 auto;"   >
+     <button class="button button-margin button-balanced" onclick="showteamTypeStrand(1)">操作规范</button>
+     <button class="button button-margin button-royal" onclick="showteamTypeStrand(2)">工艺标准</button>
+     <button class="button button-margin button-calm" onclick="showteamTypeStrand(3)">质量标准</button>
+ </div>
+
+
+ <div id="mainContent">
+    <div class="list" id="teamList">
+
+    </div>
+</div>
+
+</body>
+</html>
+<script src="../../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function () {
+        var winHeight = api.winHeight;
+        var headerHeight = api.pageParam.headerHeight;
+        var searchDiv = $api.dom('#searchDiv').offsetHeight;
+        $api.css($api.dom('#mainContent'), 'overflow: auto;height: ' + (winHeight - headerHeight - searchDiv) + 'px;');
+        
+        var teamTypeId  =  $api.getStorage('currentteamTypeId');
+        api.ajax({
+            url: 'http://api.szsei.com/api/Team/GetByType?typeId=' +teamTypeId,
+            method: 'get',
+        }, function (ret, err) {
+            if (ret) {
+                $api.setStorage('allteam', ret);
+                var teams = '';
+                for (var i = 0; i < ret.length; i++) {
+                    teams += "<a class='item item-icon-right' onclick='showteamDetail(" + ret[i].ID + ")'>" + ret[i].Principal + "<span class='item-note'>" + ""+ ret[i].MemberCount +"人</span></a>";
+                }
+                $api.html($api.byId('teamList'), teams);
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    };
+
+    function addStars(count)
+    {
+        var sStars = "";
+        for (var i = 0; i < parseInt(count); i++) {
+            sStars = sStars + '<i class="icon ion-star"></i>';
+        }
+        return sStars;
+    }
+
+    function findTeamTypeById(id) {
+    }
+
+
+    function showteamTypeStrand(tabIndex) {
+
+        api.openWin({
+            name: 'teamType_standard',
+            url: 'teamType_standard.html',
+            bgColor: '#f2f2f2',
+            bounces: false,
+            scrollToTop: true ,
+            pageParam:{
+                tabIndex:tabIndex
+            }
+        });
+    }
+    
+
+    function showteamDetail(id) {
+        $api.setStorage('currentteamId', id);
+        api.openWin({
+            name: 'team' + id,
+            url: 'team_detail.html',
+            bgColor: '#f2f2f2',
+            bounces: false,
+            scrollToTop: true 
+        });
+    }
+</script>
