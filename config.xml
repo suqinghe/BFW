@@ -19,7 +19,7 @@
   </feature>
   
   <platform name="ios">
-    <icon src="www/img/logo.png" platform="ios" width="180" height="180" />
+    <icon src="logo.png"  width="180" height="180" />
   </platform>
 
 </widget>
