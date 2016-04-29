@@ -22,5 +22,6 @@
     <icon src="img/logo.png"  width="180" height="180" />
     <splash src="img/splash.png" platform="ios" width="750" height="1334" />
   </platform>
-
+  <preference name="SplashScreen" value="screen"/>
+  <preference name="SplashScreenDelay" value="3000" />
 </widget>
