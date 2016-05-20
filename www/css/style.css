@@ -36,7 +36,7 @@ html, body {
 	position: absolute;
 	left: 0;
 	top: 0;
-	background: #ddd;
+	/*background: #ddd;*/
 	right: 0;
 	height: 1px;
 	-webkit-transform: scaleY(0.5);
@@ -57,7 +57,7 @@ html, body {
 .swipe {
 	overflow: hidden;
 	position: relative;
-	height: 200px;
+	height: 275px;
 }
 
 .swipe-wrap {
@@ -77,12 +77,13 @@ html, body {
 
 #main {
 	padding: 2px;
-	background-color: #e5e5e5;
+	/*background-color: #e5e5e5;*/
+	/*height: 370px;*/
 }
 
 #main .flex-vertical .layout {
-	background: #FE1014 url() right bottom no-repeat;
-	margin: .3rem;
+	background:   url() right bottom no-repeat;
+	/*margin: .3rem;*/
 	padding: .3rem;
 	background-size: auto 50%;
 	line-height: 2rem;
@@ -92,6 +93,7 @@ html, body {
 
 #main a{
 	text-decoration: none;
+	margin:.3rem;
 }
 
 #main .flex-vertical .layout p {
@@ -100,49 +102,54 @@ html, body {
 
 #main .flex-vertical .layout.ic-project {
 	background-image: url(../img/ic-project.png);
-	background-color: #FE0000;
+	/*background-color: #FE0000;*/
 }
 
 #main .flex-vertical .layout.ic-labor {
 	background-image: url(../img/ic-labor.png);
-	background-color: #0295DD;
+	/*background-color: #0295DD;*/
 }
 
 #main .flex-vertical .layout.ic-team {
 	background-image: url(../img/ic-team.png);
-	background-color: #DC3C00;
+	/*background-color: #DC3C00;*/
 	font-size: 1.6rem;
 }
 
 #main .flex-vertical .layout.ic-company {
 	background-image: url(../img/ic-company.png);
-	background-color: #7A1DDD;
+	/*background-color: #7A1DDD;*/
 	font-size: 1.6rem;
 }
 
 #main .flex-vertical .layout.ic-shop {
 	background-image: url(../img/ic-shop.png);
-	background-color: #0295DD;
+	/*background-color: #DC3C00;*/
 }
 
 #main .flex-vertical .layout.ic-contact {
 	background-image: url(../img/ic-contact.png);
-	background-color: #FD991F;
+	/*background-color: #FD991F;*/
 	font-size: 1.6rem;
 }
 
 #main .flex-vertical .layout.ic-contract {
 	background-image: url(../img/ic-contract.png);
 	font-size: 1.2rem;
-	background-color: #D583FF;
+	/*background-color: #D583FF;*/
+
 }
 
-#main .flex-vertical .layout.ic-more {
-	background-image: url(../img/ic-more.png);
-	background-color: #FE0000;
+#main .flex-vertical .layout.ic-financing {
+	background-image: url(../img/ic-financing.png);
+	/*background-color: #FE0000;*/
 	font-size: 1.2rem;
-	background-size: 50% auto;
-	background-position: center right;
+}
+
+.flex-4 {
+	-webkit-box-flex: 4;
+	-webkit-flex: 4;
+	flex: 4;
 }
 
 .flex-2 {
@@ -150,6 +157,7 @@ html, body {
 	-webkit-flex: 2;
 	flex: 2;
 }
+
 
 .hover {
 	opacity: .8;
@@ -198,7 +206,7 @@ header .title {
 	float: right;
 	color: #aaa;
 	font-size: 14px; 
-	border-bottom: solid 1px gray;
+	/*border-bottom: solid 1px gray;*/
 	padding:10px;
 	background-color:#ffffff;
 	width: 100%;

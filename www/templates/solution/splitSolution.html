@@ -1,0 +1,45 @@
+<ion-view view-title="拆分子工程">
+	<ion-content >
+		<form novalidate>
+
+			<ion-item class="item-remove-animate" type="item-text-wrap">
+				父工程名称
+				<span class="item-note">{{solution.ParentName}}</span>
+			</ion-item>
+
+			<label class="item item-input  ">
+				<span class="input-label">子工程名称</span>
+				<input type="text" placeholder="子工程名称" ng-model="solution.Name"></label>
+			<label class="item item-input  ">
+				<span class="input-label">子工程编号</span>
+				<input type="text" placeholder="子子工程编号" ng-model="solution.No"></label>
+			<label class="item item-input  ">
+				<span class="input-label">启动时间</span>
+				<input type="text" placeholder="请选择" ng-model="solution.StartDate"></label>
+			<label class="item item-input  ">
+				<span class="input-label">结束时间</span>
+				<input type="text" placeholder="请选择" ng-model="solution.EndDate"></label>
+
+			<div class="item item-divider">子工程地址</div>
+
+			<textarea placeholder="请输入子工程地址" rows="3" ng-model="solution.Address"></textarea>
+
+			<div class="item item-divider"></div>
+			<label class="item item-input  ">
+				<span class="input-label">子工程估价</span>
+				<input type="text" placeholder="输入子工程价格" ng-model="solution.Valuation"></label>
+
+			<div class="item item-divider">子工程描述</div>
+			<textarea placeholder="输入子工程描述"  rows="3" ng-model="solution.Description"></textarea>
+
+			<div class="item item-divider">备注</div>
+			<textarea placeholder="输入备注"  rows="3" ng-model="solution.Remark"></textarea>
+
+			<div class="padding">
+				<button class="button button-full button-balanced" ng-click="splitSolution()">拆分</button>
+				<button class="button button-block button-calm"  ng-click="reset()">重置</button>
+			</div>
+
+		</form>
+	</ion-content>
+</ion-view>

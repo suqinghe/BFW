@@ -1,0 +1,42 @@
+<ion-view view-title="劳务详情">
+  <ion-content>
+    <div class="item item-avatar">
+      <img ng-src="img/bg_user.png"/>
+      <h2>{{labor.Name}}</h2>
+    </div>
+    <div class="list">
+
+      <ion-item class="item-remove-animate" type="item-text-wrap"> 
+      <i class="icon ion-person"></i>
+        姓名
+        <span class="item-note">{{labor.Name}}</span>
+      </ion-item>
+
+      <ion-item class="item-remove-animate" type="item-text-wrap"> 
+      <i class="icon ion-iphone"></i>
+        手机
+        <p class="item-note">{{labor.Tel}}</p>
+      </ion-item>
+
+      <ion-item class="item-remove-animate">
+        <i class="icon ion-card"></i>
+        身份证
+        <span class="item-note">{{labor.IDCard}}</span>
+      </ion-item>
+
+      <ion-item class="item-divider">认证信息</ion-item>
+      <ion-item class="item-remove-animate"  >
+        <i class="icon ion-social-yen"></i>
+        银行卡号
+        <span class="item-note">{{labor.BankAccount}}</span>
+      </ion-item>
+      <ion-item class="item-remove-animate"  >
+        <i class="icon ion-ios-telephone"></i>
+        <i class="icon ion-settings"></i>
+        技能简介
+        <span class="item-remark">{{labor.StrSkills}}</span>
+      </ion-item>
+
+    </div>
+  </ion-content>
+</ion-view>

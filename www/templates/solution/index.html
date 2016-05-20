@@ -1,0 +1,29 @@
+<ion-view view-title="工程列表" ng-controller="SolutionCtrl">
+	<ion-nav-buttons side="right">
+		<a class="button ion-plus" ng-href="#/tab/addsolution">发布</a>
+	</ion-nav-buttons>
+	<ion-content>
+		<div class="item-input-inset" id="searchDiv">
+			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" ng-model="keyword" placeholder="搜索"></label>
+			<button class="button button-clear">取消</button>
+		</div>
+
+		<div style="margin-bottom: 10px;">
+      <button ng-click="GetSimpleDataByCId({{category.ID}},'{{keyword}}')" class="button button-stable button-small" style="margin: 1px;" ng-repeat="category in categories | limitTo:6">{{category.Name}}</button>
+    </div>
+
+		<ion-list>
+			<ion-item class=" item-icon-right" ng-repeat="item in solutions|filter:keyword" type="item-text-wrap"
+href="#/tab/solution/{{item.ID}}">
+				<h2>{{item.Name}}</h2>
+				<p>工程状态：{{item.Status}}</p>
+				<p>开始时间：{{item.StartDate}}</p> 
+				<p>工程分类：{{item.CategoryName}}</p>
+				<p>工程地址：{{item.Address}}</p> 
+				<p>隶属公司：{{item.CompanyName}}</p>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

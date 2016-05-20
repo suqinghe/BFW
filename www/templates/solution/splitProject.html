@@ -1,0 +1,41 @@
+<ion-view view-title="拆分子项目">
+	<ion-content >
+		<form novalidate>
+
+			<ion-item class="item-remove-animate" type="item-text-wrap">
+				父工程名称
+				<span class="item-note">{{project.SolutionName}}</span>
+			</ion-item>
+
+			<label class="item item-input  ">
+				<span class="input-label">子项目名称</span>
+				<input type="text" placeholder="子项目名称" ng-model="project.Name"></label>
+			<label class="item item-input  ">
+				<span class="input-label">子项目编号</span>
+				<input type="text" placeholder="子子项目编号" ng-model="project.No"></label>
+			<label class="item item-input  ">
+				<span class="input-label">启动时间</span>
+				<input type="text" placeholder="请选择" ng-model="project.StartDate"></label>
+			<label class="item item-input  ">
+				<span class="input-label">结束时间</span>
+				<input type="text" placeholder="请选择" ng-model="project.EndDate"></label>
+
+			<div class="item item-divider">子项目地址</div>
+
+			<textarea placeholder="请输入子项目地址" rows="3" ng-model="project.Address"></textarea>
+
+			<div class="item item-divider"></div>
+			<div class="item item-divider">子项目描述</div>
+			<textarea placeholder="输入子项目描述"  rows="3" ng-model="project.Description"></textarea>
+
+			<div class="item item-divider">备注</div>
+			<textarea placeholder="输入备注"  rows="3" ng-model="project.Remark"></textarea>
+
+			<div class="padding">
+				<button class="button button-full button-balanced" ng-click="splitProject()">拆分</button>
+				<button class="button button-block button-calm"  ng-click="reset()">重置</button>
+			</div>
+
+		</form>
+	</ion-content>
+</ion-view>

@@ -1,16 +1,38 @@
 <ion-view view-title="建材商城">
-<ion-content>
-<ion-list>
-<ion-item class="item-avatar item-icon-right" ng-repeat="product in products"
-type="item-text-wrap" href="#/tab/product/{{product.id}}">
-<img  ng-src="{{product.image}}" alt="{{product.name}}">
-<h2>{{product.name}}</h2>
-<p><strong>付款方式：</strong>{{product.paytype}}</p>
-<p><strong>交货方式：</strong>{{product.shiptype}}</p>
-<p><strong>起订量：</strong>{{product.qty}}{{product.unit}}</p> 
+	<ion-nav-buttons side="right">
+		<a class="button button-small ion-navicon-round" ng-click="openPopover($event);">分类</a>
+	</ion-nav-buttons>
+	<ion-content>
+		<div class="item-input-inset" id="searchDiv">
+			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" ng-model="keyword" placeholder="搜索"/>
+			</label>
+			<button class="button button-clear">取消</button>
+		</div>
+		<ion-list>
+			<ion-item class="item-thumbnail-left item-icon-right" ng-repeat="product in products|filter:keyword" type="item-text-wrap" href="#/tab/product/{{product.ID}}">
+				<img  ng-src="img/prd_06.jpg" alt="{{product.Name}}"/>
+				<h2>{{product.Name}}</h2>
+				<p> <strong>产品分类：</strong>
+					{{product.CategoryName}}
+				</p>
+				<p> <strong>价格范围：</strong>
+					{{product.MinPrice | currency:'￥':0}}-{{product.MaxPrice | currency:'￥':0}}
+				</p>
+				<p>
+					<strong>产品供应商：</strong>
+					{{product.SupplyCount}} 家
+				</p> <i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+		</ion-list>
 
-<i class="icon ion-chevron-right icon-accessory"></i>
-</ion-item>
-</ion-list>
-</ion-content>
+		<script id="ez-popover.html" type="text/ng-template">
+		<ion-popover-view class="padding">
+          <ion-list style="overflow-y: auto;">
+            <ion-item ng-repeat="category in categories" nav-clear menu-close ng-click="GetProductsByCategory({{category.ID}})" >{{category.Name}}</ion-item>
+          </ion-list>
+		</ion-popover-view>
+	</script>
+	</ion-content>
+
 </ion-view>

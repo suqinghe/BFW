@@ -1,30 +1,34 @@
-<ion-view view-title="项目列表">
-<ion-nav-buttons side="right">
-<a class="button ion-plus" ng-href="#/tab/addproject">
-  发布
-</a>
-</ion-nav-buttons>
-<ion-content>
-<div class="item-input-inset" id="searchDiv">
-  <label class="item-input-wrapper">
-    <i class="icon ion-ios-search placeholder-icon"></i>
-    <input type="search" ng-model="keyword" placeholder="搜索">
-  </label>
-  <button class="button button-clear">
-    取消
-  </button>
-</div>
-
-<ion-list>
-<ion-item class="item-icon-right" ng-repeat="project in projects|filter:keyword" type="item-text-wrap"
+<ion-view ng-controller="ProjectCtrl"  view-title="项目列表">
+	<ion-nav-buttons side="right">
+		<a class="button button-small ion-navicon-round" ng-click="openPopover($event);">分类</a>
+	</ion-nav-buttons>
+	<ion-content>
+		<div class="item-input-inset" id="searchDiv">
+			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" ng-model="keyword" placeholder="搜索"></label>
+			<button class="button button-clear">取消</button>
+		</div>
+		<div style="margin-bottom: 10px;">
+			<button ng-click="GetSimpleDataByType({{item.ID}},'{{keyword}}','{{searchType}}')" class="button button-stable button-small" style="margin: 1px;" ng-repeat="item in tabs | limitTo:6">{{item.Name}}</button>
+		</div>
+		<ion-list>
+			<ion-item class="item-icon-right" collection-repeat="project in projects|filter:keyword" type="item-text-wrap"
 href="#/tab/project/{{project.ID}}">
-<h2>{{project.Name}}</h2>
-<p>发布公司：{{project.CompanyName}}</p>
-<p>截止时间：{{project.RecruitEndDate}}</p>
-<p>招聘状态：{{project.Status}}</p>
-<i class="icon ion-chevron-right icon-accessory"></i>
-</ion-item>
-</ion-list>
-</ion-content>
-</ion-view>
+				<h2>{{project.Name}}</h2>
+				<p>发布公司：{{project.CompanyName}}</p>
+				<p>项目时间：{{project.ProjectDate}}</p>
+				<p>项目状态：{{project.Status}}</p>
+				<p>项目类型：{{project.CategoryName}}</p>
+				<p>隶属工程：{{project.SolutionName}}</p> <i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+		</ion-list>
+	</ion-content>
 
+	<script id="ez-popover.html" type="text/ng-template">
+		<ion-popover-view class="padding">
+          <ion-list>
+            <ion-item ng-repeat="item in searchTypes" nav-clear menu-close ng-click="GetSimpleDataByType('{{item.Value}}')" >{{item.Key}}</ion-item>
+          </ion-list>
+		</ion-popover-view>
+	</script>
+</ion-view>

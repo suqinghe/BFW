@@ -1,25 +1,23 @@
 <ion-view view-title="注册">
-<ion-content class="padding">
+	<ion-content ng-controller="AccountCtrl" class="padding">
 
-<div  style="text-align: center;margin: 20px auto;" >
-	<img style="text-align: center;" ng-src="img/logo.png" alt="超能国际">
-</div>
-<form novalidate>
-	<div class="list">
-		<label class="item item-input item-stacked-label">
-			<span class="input-label">用户名</span>
-			<input type="text" id="login" ng-model="user.Login" placeholder="输入用户名">
-		</label>
-		<label class="item item-input item-stacked-label">
-			<span class="input-label">密码</span>
-			<input type="password" id="password" placeholder="输入密码" ng-model="user.Password">
-		</label>
-	</div>
+		<div  style="text-align: center;margin: 20px auto;" >
+			<img style="text-align: center;" ng-src="img/logo.png" alt="超能国际"></div>
 
-	<div class="padding">
-		<button class="button button-block button-positive"  ng-click="login()">登录</button>
-		<button class="button button-block button-calm"  ng-click="register()">注册</button>
-	</div>
-</form>
-</ion-content>
+		<form name="loginForm">
+			<div class="list">
+				<label class="item item-input">
+					<span class="input-label">用户名</span>
+					<input type="text" ng-model="user.Login"  placeholder="输入用户名" required></label>
+				<label class="item item-input">
+					<span class="input-label">密码</span>
+					<input type="password" ng-model="user.Password" placeholder="输入密码"  required></label>
+			</div>
+
+			<div class="padding">
+				<button class="button button-block button-positive"  ng_disabled="!loginForm.$valid" ng-click="login()">登录</button>
+				<button class="button button-block button-calm"  ng-click="register()">注册</button>
+			</div>
+		</form>
+	</ion-content>
 </ion-view>

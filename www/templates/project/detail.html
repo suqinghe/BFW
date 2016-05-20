@@ -1,60 +1,53 @@
 <ion-view view-title="项目详情">
-<ion-content>
-<div class="item item-avatar">
-  <img ng-src="img/bg_user.png"/>
-  <h2>{{project.Name}}</h2>
-  <p>{{project.Principal}}</p>
-</div>
-<div class="list">
-  <a href="#" class="item">项目名称<span class="item-note">{{project.Name}}</span></a>
-  <a href="#" class="item">项目地址<span class="item-note">{{project.Address}}</span></a>
-  <a href="#" class="item">开始时间<span class="item-note">{{project.StartDate}}</span></a>
-  <a href="#" class="item">结束时间<span class="item-note">{{project.EndDate}}</span></a>
-  <a href="#" class="item">招聘截止时间<span class="item-note">{{project.RecruitEndDate}}</span></a>
+  <ion-content>
 
-  <div class="item item-divider">项目发布方</div>
-  <a href="#" class="item">公司名称<span class="item-note">{{project.CompanyName}}</span></a>
-  <a class="item item-icon-left" href="#">
-    <i class="icon ion-person"></i>
-    联系人
-    <span class="item-note">
-     {{project.Principal}}
-   </span>
- </a>
- <a class="item item-icon-left" href="#">
-  <i class="icon ion-ios-telephone"></i>
-  手机
-  <span class="item-note">
-   {{project.Mobile}}
- </span>
-</a>
+    <div class="list">
+      <ion-item >
+        项目名称
+        <span class="item-note">{{project.Name}}</span>
+      </ion-item>
+      <ion-item >
+        项目地址
+        <span class="item-note">{{project.Address}}</span>
+      </ion-item>
+      <ion-item >
+        开始时间
+        <span class="item-note">{{project.StartDate}}</span>
+      </ion-item>
+      <ion-item >
+        结束时间
+        <span class="item-note">{{project.EndDate}}</span>
+      </ion-item>
+       <ion-item >
+        项目状态
+        <span class="item-note">{{project.Status}}</span>
+      </ion-item>
 
-<div class="item item-divider">
-  需求信息
-</div>
+      <div class="item item-divider">项目发布方</div>
+      <ion-item >
+        公司名称
+        <span class="item-note">{{project.Company.Name}}</span>
+      </ion-item>
+      <ion-item> <i class="icon ion-person"></i>
+        联系人
+        <span class="item-note">{{project.Company.Principal}}</span>
+      </ion-item>
+       <ion-item ><i class="icon ion-ios-telephone"></i>
+        手机
+        <span class="item-note">{{project.Company.Mobile}}</span>
+      </ion-item>
 
-<a href="#" class="item">薪资/价格<span class="item-note">{{project.Salary}}</span></a>
-<a href="#" class="item">类型<span class="item-note">{{project.RecruitType}}</span></a>
-<a href="#" class="item">项目估价<span class="item-note">{{project.TotalPrice}}</span></a>
+      <div class="item item-divider">项目简介</div>
+      <span class="item-remark">{{project.Description}}</span>
 
-<div class="item item-divider"></div>
-<a class="item item-icon-right " href="#">
-  查找附近施工单位
-  <i class="icon ion-location"></i>
-</a>
+     
+      <div class="item item-divider">备注</div>
+      <span class="item-remark">{{project.Remark}}</span>
 
-<div class="item item-divider">项目简介</div>
-<span class="item-remark">{{project.Description}}</span>
-
-<div class="item item-divider">员工承诺</div>
-<span class="item-remark">{{project.LaborerRequirement}}</span>
-
-<div class="item item-divider">备注</div>
-<span class="item-remark">{{project.Remark}}</span>
-
-<div class="item" style="text-align: center;margin: 0 auto;" >
-  <button ng-click="applyProject({{project.Remark}})" class="button button-balanced">申请该项目</button> 
-</div>
-</div> 
-</ion-content>
+      <div class="item" style="text-align: center;margin: 0 auto;" >
+        <button ng-click="startProject({{project.Remark}})" class="button button-small button-positive">启动项目</button>
+        <button ng-click="startProject({{project.Remark}})" class="button button-small button-balanced">申请融资</button>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>

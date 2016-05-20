@@ -1,46 +1,35 @@
-<ion-view view-title="{{product.name}}">
-<ion-content class="padding">
+<ion-view view-title="产品详情">
+	<ion-content class="padding">
 
+		<ion-slide-box class='swipe' auto-play='true' does-continue='true'>
+			<ion-slide class="swipe-wrap">
+				<div class="swipe-con">
+					<img ng-src="img/prd_01.jpg"></div>
+			</ion-slide>
+			<ion-slide class="swipe-wrap">
+				<div class="swipe-con">
+					<img ng-src="img/prd_08.jpg"></div>
+			</ion-slide>
+		</ion-slide-box>
 
-<ion-slide-box class='swipe' auto-play='true' does-continue='true'>
-<ion-slide class="swipe-wrap">
-<div class="swipe-con"><img ng-src="img/prd_01.jpg"></div>
-</ion-slide>
-<ion-slide class="swipe-wrap">
-<div class="swipe-con"><img ng-src="img/prd_08.jpg"></div>
-</ion-slide> 
-</ion-slide-box>
+		<div class="list" style="margin: 5px 0px 10px 0px;">
+			<div class="item  item-text-wrap item-icon-right">
+				<h3>{{product.Name}}</h3>
+				<p>{{product.CategoryName}}</p>
+				<p> <strong>价格范围：</strong>
+					{{product.MinPrice | currency:'￥':0}}-{{product.MaxPrice | currency:'￥':0}}
+				</p>
+				<p> <strong>产品供应商：</strong>
+					{{product.SupplyCount}} 家
+				</p> <i class="icon ion-ios-cart-outline"></i>
+			</div>
 
-<div class="list" style="margin: 5px 0px 10px 0px;">
-	<div class="item  item-text-wrap">
-		<h3>{{product.name}}</h3>
-		<p style="color: red;">
-			（{{product.subtitle}}）
-		</p>
-		<p>
-			{{product.price | currency}}/{{product.unit}}
-		</p>
+			<div class="item  item-text-wrap ">
+				<h3>产品描述：</h3>
+				<p>{{product.Description}}</p>
+			</div>
 
-		<i class="icon ion-ios-cart-outline"></i>
-	</div>
+		</div>
 
-
-	<div class="item  item-text-wrap ">
-		<h3>产品描述：</h3>
-		<p>建筑钢材通常可分为钢结构用钢和钢筋混凝土结构用钢筋。钢结构用钢主要有普通碳素结构钢和低合金结构钢。</p>
-		<p>品种有型钢、钢管和钢筋。型钢中有角钢、工字钢和槽钢。</p>
-		<p>钢筋混凝土结构用钢筋，按加工方法可分为：热轧钢筋、热处理钢筋、冷拉钢筋、冷拔低碳钢丝和钢绞线管；</p>
-		<p>按表面形状可分为光面钢筋和螺纹；</p>
-		<p>按钢材品种可分为低碳钢、中碳钢、高碳钢和合金钢等。我国钢筋按强度可分为I、Ⅱ、Ⅲ、Ⅳ、V 五类级别。</p>
-	</div>
-
-	<div class="item  item-text-wrap ">
-		<h3>规格说明：</h3>
-		<p>建筑用金属材料，包括黑色和有色金属材料，以及21世纪发展起来的钢铁材料与各种有色金属及其合金或与其他材料相配合的复合材料。</p>
-		<p>建筑业主要采用黑色金属材料中的钢材，铸铁主要用作铸铁制品(如压力管等)。中国建筑用钢多数是采用平炉和氧气顶吹转炉冶炼的低碳钢(碳含量小于 0.25%)、中碳钢（碳含量0.25～0.60%）及低合金钢，并以沸腾钢或镇静钢工艺生产，其中沸腾钢因冲击、时效、冷脆性能较镇静钢为差，使用时在某些结构中有所限制，如铁路桥梁、重级工作制吊车梁等。半镇静钢机械性能优于沸腾钢而接近镇静钢,其成品收得率 却接近沸腾钢,在中国已被推广使用。</p>
-	</div>
-</div>
-
-</ion-content>
+	</ion-content>
 </ion-view>
-

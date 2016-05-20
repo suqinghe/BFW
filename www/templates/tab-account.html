@@ -1,66 +1,52 @@
 <ion-view view-title="设置">
-<ion-content>
-<ion-list>
+	<ion-content>
+		<ion-list>
 
+			<ion-item class="item item-avatar  item-icon-right" ng-href="#/tab/accountinfo">
+				<img ng-src="img/bg_user.png" alt="">
+				<h2>{{company.Name}}</h2>
+				<p>{{company.Principal}}</p> <i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+			 
+			<ion-item class="item-divider"></ion-item>
 
-<div class="item item-avatar ">
-	<img ng-src="img/bg_user.png" alt="">
-	<h2>超能国际</h2>
-	<p>szsei</p>
-</div>
+			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
+				通用设置
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
 
+			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
+				评分鼓励
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
 
-<ion-item class="item-divider"></ion-item>
+			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
+				分享推荐
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
 
-<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
-帐号与安全
-<i class="icon ion-chevron-right icon-accessory"></i>
-</ion-item>
+			<ion-item class="item-divider"></ion-item>
 
+			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/about">
+				关于我们
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
 
-<ion-item class="item-divider"></ion-item>
+			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/feedback">
+				问题反馈
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
 
-<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
-通用设置
-<i class="icon ion-chevron-right icon-accessory"></i>
-</ion-item>
+			<ion-item class="item-divider"></ion-item>
 
-<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
-评分鼓励
-<i class="icon ion-chevron-right icon-accessory"></i>
-</ion-item>
+			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/register">
+				帐号注册
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+			<div class="padding">
+				<a class="button button-full button-assertive"  ng-href="#/tab/logout">退出登录</a>
+			</div>
 
-<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
-分享推荐
-<i class="icon ion-chevron-right icon-accessory"></i>
-</ion-item>
-
-
-
-
-<ion-item class="item-divider"></ion-item>
-
-
-<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
-关于我们
-<i class="icon ion-chevron-right icon-accessory"></i>
-</ion-item>
-
-<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
-问题反馈
-<i class="icon ion-chevron-right icon-accessory"></i>
-</ion-item>
-
-
-<ion-item class="item-divider"></ion-item>
-
-<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/register">
-帐号注册
-<i class="icon ion-chevron-right icon-accessory"></i>
-</ion-item>
-<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/logout">
-退出登录
-</ion-item>
-</ion-list>
-</ion-content>
+		</ion-list>
+	</ion-content>
 </ion-view>
