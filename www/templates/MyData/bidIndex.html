@@ -1,0 +1,20 @@
+<ion-view ng-controller="ProjectCtrl"  view-title="我的投标">
+	 
+	<ion-content>
+		<div class="item-input-inset" id="searchDiv">
+			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" ng-model="keyword" placeholder="搜索"></label>
+			<button class="button button-clear">取消</button>
+		</div>
+		 
+		<ion-list>
+			<ion-item class="item-icon-right" collection-repeat="bid in myBids|filter:keyword" type="item-text-wrap"
+href="#/tab/bid/{{bid.ID}}">
+				<h2>{{bid.SolutionName}}</h2>
+				<p>投标状态：{{bid.Status}}</p>
+				<p>投标公司：{{bid.CompanyName}}</p>
+				<p>竞标出价：{{bid.BidOffer}}</p> <i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

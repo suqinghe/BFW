@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.superappv120737626" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>暴房网</name>
+<widget id="com.ionicframework.superappv120737626" version="1.4.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>供给通</name>
   <description>
-    暴房网APP
+    房产基建供应链金融方案解决专家
   </description>
   <author email="suqingheangle@163.com" href="http://example.com.com/">
     苏庆贺

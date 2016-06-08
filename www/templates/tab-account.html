@@ -7,12 +7,11 @@
 				<h2>{{company.Name}}</h2>
 				<p>{{company.Principal}}</p> <i class="icon ion-chevron-right icon-accessory"></i>
 			</ion-item>
-			 
+
 			<ion-item class="item-divider"></ion-item>
 
 			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
-				通用设置
-				<i class="icon ion-chevron-right icon-accessory"></i>
+				通用设置 <i class="icon ion-chevron-right icon-accessory"></i>
 			</ion-item>
 
 			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap">
@@ -28,6 +27,10 @@
 			<ion-item class="item-divider"></ion-item>
 
 			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/about">
+				联系客服
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/about">
 				关于我们
 				<i class="icon ion-chevron-right icon-accessory"></i>
 			</ion-item>
@@ -39,12 +42,8 @@
 
 			<ion-item class="item-divider"></ion-item>
 
-			<ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/register">
-				帐号注册
-				<i class="icon ion-chevron-right icon-accessory"></i>
-			</ion-item>
 			<div class="padding">
-				<a class="button button-full button-assertive"  ng-href="#/tab/logout">退出登录</a>
+				<a class="button button-full button-assertive"  ng-click="logout()">退出登录</a>
 			</div>
 
 		</ion-list>

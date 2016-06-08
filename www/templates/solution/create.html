@@ -1,24 +1,13 @@
 <ion-view view-title="发布工程">
 	<ion-content>
 		<form novalidate ng-controller="SolutionCtrl">
-			<label class="item item-input  ">
-				<span class="input-label">工程名称</span>
-				<input type="text" placeholder="工程名称" ng-model="solution.Name"></label>
+			<div class="item item-divider">基础信息</div>
 			<label class="item item-input  ">
 				<span class="input-label">工程编号</span>
 				<input type="text" placeholder="工程编号" ng-model="solution.No"></label>
 			<label class="item item-input  ">
-				<span class="input-label">启动时间</span>
-				<input type="text" placeholder="请选择" ng-model="solution.StartDate"></label>
-			<label class="item item-input  ">
-				<span class="input-label">结束时间</span>
-				<input type="text" placeholder="请选择" ng-model="solution.EndDate"></label>
-
-			<div class="item item-divider">工程地址</div>
-
-			<textarea placeholder="请输入工程地址" rows="3" ng-model="solution.Address"></textarea>
-
-			<div class="item item-divider"></div>
+				<span class="input-label">工程名称</span>
+				<input type="text" placeholder="工程名称" ng-model="solution.Name"></label>
 
 			<label class="item item-input  ">
 				<span class="input-label">工程类型</span>
@@ -27,14 +16,23 @@
 					<option ng-repeat="x in categories" value="{{x.ID}}">{{x.Name}}</option>
 				</select>
 			</label>
+			<div class="item item-divider">工程地址</div>
+			<textarea placeholder="请输入工程地址" rows="3" ng-model="solution.Address"></textarea>
+
+			<div class="item item-divider">工程信息</div>
 			<label class="item item-input  ">
 				<span class="input-label">工程估价</span>
 				<input type="text" placeholder="输入工程价格" ng-model="solution.Valuation"></label>
-
+			<label class="item item-input  ">
+				<span class="input-label">启动时间</span>
+				<input type="text" placeholder="请选择" ng-model="solution.StrStartDate"></label>
+			<label class="item item-input  ">
+				<span class="input-label">结束时间</span>
+				<input type="text" placeholder="请选择" ng-model="solution.StrEndDate"></label>
 			<div class="item item-divider">工程描述</div>
 			<textarea placeholder="输入工程描述"  rows="3" ng-model="solution.Description"></textarea>
 
-			<div class="item item-divider">备注</div>
+			<div class="item item-divider">其他信息</div>
 			<textarea placeholder="输入备注"  rows="3" ng-model="solution.Remark"></textarea>
 
 			<div class="padding">

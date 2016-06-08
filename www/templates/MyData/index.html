@@ -1,0 +1,27 @@
+<ion-view view-title="我的信息" ng-controller="SolutionCtrl">
+	<ion-content>
+		<ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()"></ion-refresher>
+		<ion-list>
+			<div ng-repeat="group in groups">
+				<ion-item class="item-stable"
+                    ng-click="toggleGroup(group)"
+                    ng-class="{active: isGroupShown(group)}"> <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+					&nbsp;
+            {{group.GroupName}}
+					<span class="badge badge-positive">{{group.Count}}</span>
+				</ion-item>
+				<div ng-repeat="item in group.Items">
+					<ion-item class="item-accordion" 
+href="{{item.URL}}/1/{{item.Key}}"
+                    ng-if="isGroupShown(group)" ng-click="max(item)" style="padding-left: 50px;">
+						{{item.Name}}
+						<span class="badge badge-assertive">{{item.Count}}</span>
+					</ion-item>
+				</div>
+			</div>
+		</ion-list>
+
+	</ion-content>
+</ion-view>

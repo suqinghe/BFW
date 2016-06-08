@@ -1,37 +1,33 @@
 <ion-view view-title="公司详情">
   <ion-content>
-    <div class="item item-avatar">
-      <img ng-src="img/bg_user.png"/>
-      <h2>{{company.Name}}</h2>
-      <p>{{company.Principal}}</p>
-    </div>
-    <div class="list">
 
+    <div class="list">
+      <ion-item class="item-divider">基础信息</ion-item>
+      <ion-item  type="item-text-wrap">
+        公司编号
+        <span class="item-note">{{company.No}}</span>
+      </ion-item>
       <ion-item  type="item-text-wrap">
         公司名称
         <span class="item-note">{{company.Name}}</span>
       </ion-item>
-      <!-- <ion-item  type="item-text-wrap">
-        公司编号
-        <span class="item-note">{{company.No}}</span>
-      </ion-item> -->
       <ion-item  type="item-text-wrap">
         公司全称
         <span class="item-note">{{company.FullName}}</span>
       </ion-item>
-
-      <ion-item class="item-divider">联系信息</ion-item>
-      <ion-item > <i class="icon ion-person"></i>
-        联系人
-        <span class="item-note">{{company.Principal}}</span>
+      <ion-item   type="item-text-wrap"> <i class="icon ion-location"></i>
+        地址
+        <span class="item-note">{{company.Address}}</span>
       </ion-item>
+
+      <ion-item class="item-divider">帐号信息</ion-item>
       <ion-item   > <i class="icon ion-iphone"></i>
         手机
         <span class="item-note">{{company.Mobile}}</span>
       </ion-item>
       <ion-item   >
         <i class="icon ion-ios-telephone"></i>
-        电话
+        座机
         <span class="item-note">{{company.Phone}}</span>
       </ion-item>
       <ion-item  >
@@ -44,13 +40,13 @@
         网址
         <span class="item-note">{{company.WebSite}}</span>
       </ion-item>
-      <ion-item   type="item-text-wrap">
-        <i class="icon ion-location"></i>
-        地址
-        <span class="item-note">{{company.Address}}</span>
-      </ion-item>
 
       <div class="item item-divider">认证信息</div>
+      <ion-item >
+        <i class="icon ion-person"></i>
+        法人代表
+        <span class="item-note">{{company.Principal}}</span>
+      </ion-item>
       <ion-item  type="item-text-wrap">
         组织机构代码
         <span class="item-note">{{company.Code}}</span>
@@ -62,6 +58,11 @@
         <span class="item-note">{{company.StrQualifications}}</span>
       </ion-item>
 
+      <div class="item item-divider">其他信息</div>
+      <ion-item  type="item-text-wrap">
+        备注
+        <span class="item-note">{{company.Remark}}</span>
+      </ion-item>
     </div>
   </ion-content>
 </ion-view>

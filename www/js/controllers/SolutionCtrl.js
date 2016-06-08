@@ -1,20 +1,22 @@
 var app = angular.module('starter');
 
-app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, HOST) {
+app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http,$cookieStore, HOST) {
+   var companyId = $cookieStore.get("CompanyId");
     $scope.solution = {
         "Address": "深圳市南山区科技中二路",
-        "StartDate": "2016-05-14 12:12:33",
-        "EndDate": "2016-05-14 12:12:33",
+        "StrStartDate": "2016-05-14 12:12:33",
+        "StrEndDate": "2016-05-14 12:12:33",
         "CompanyId": 4,
         "ParentId": 0,
         "CategoryId": "2",
-        "Valuation": "￥300,000,000.00",
+        "Valuation": 300,
         "Description": "地铁8号线工程",
         "Status": "草稿",
-        "No": "SZ_001",
+        "No": '',
         "Remark": "很有前途的工程",
-        "Name": "深圳土建工程2016001号"
+        "Name": "深圳土建工程2016-05-29号"
     };
+ 
 
     $http.get(HOST + "api/Solution/GetCategories?parentId=0", {
             cache: true
@@ -24,8 +26,7 @@ app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, HOST
                 $scope.categories = response;
             }
         );
-
-    $http.get(HOST + "api/Solution/GetBy?name=&parentid=0&companyId=0&categoryid=0")
+    $http.get(HOST + "api/Solution/GetBy?name=&parentid=0&companyId="+ companyId +"&status=0&categoryid=0")
         .success(
             function(response) {
                 $scope.solutions = response;
@@ -33,8 +34,8 @@ app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, HOST
         );
 
     $scope.GetSimpleDataByCId = function(id, name) {
-        $http.get(HOST + "api/Solution/GetBy?name=" + name + "&parentid=0&companyId=0&categoryid=" + id, {
-                cache: true
+        $http.get(HOST + "api/Solution/GetBy?name=" + name + "&parentid=0&companyId="+ companyId +"&status=0&categoryid=" + id, {
+                cache: false
             })
             .success(
                 function(response) {
@@ -46,8 +47,16 @@ app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, HOST
         $scope.solution = {};
     };
 
+    $scope.doRefresh = function() {
+        $scope.GetSimpleDataByCId(0, '');
+        $scope.$broadcast("scroll.refreshComplete");
+    };
+
 
     $scope.publish = function() {
+
+        $scope.solution.CompanyId =companyId;
+
         $http.post(HOST + "api/Solution/postadd", $scope.solution)
             .success(
                 function(response) {
@@ -62,12 +71,11 @@ app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, HOST
             );
     };
 
-
-
 });
 
 
-app.controller('SolutionDetailCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+app.controller('SolutionDetailCtrl', function($scope, $http, $state, $ionicHistory, $cookieStore,$ionicPopup, $stateParams, HOST) {
+    var companyId = $cookieStore.get("CompanyId");
     var id = $stateParams.solutionId;
     $scope.solution = {};
     $http.get(HOST + "/api/solution/getbyid/" + id, {
@@ -79,46 +87,12 @@ app.controller('SolutionDetailCtrl', function($scope, $http, $state, $ionicHisto
             }
         );
 
-
-    $scope.finishConfirm = function() {
-        $http.post(HOST + "api/Solution/FinishConfirm/" + id)
-            .success(
-                function(response) {
-
-
-                    $ionicPopup.alert({
-                        title: '确认',
-                        template: response.Message
-                    });
-                    if (response.IsSuccessed) {
-                        $state.go('tab.solution', {});
-                    }
-                }
-            );
-    };
-    $scope.publishBid = function() {
-        $http.post(HOST + "api/Solution/PublishBid/" + id)
-            .success(
-                function(response) {
-                    $ionicPopup.alert({
-                        title: '确认',
-                        template: response.Message
-                    });
-                    if (response.IsSuccessed) {
-                        $state.go('tab.solution', {});
-                    }
-                }
-            );
-    };
-
     $scope.applyBid = function() {
 
         $scope.bid = {
-            'solutionId': id,
-            'companyId': 2
+            'SolutionId': id,
+            'CompanyId': companyId
         }
-
-        // 自定义弹窗
         var myPopup = $ionicPopup.show({
             template: '<input type="text"  ng-model="bid.BidOffer">',
             title: '投标确认',
@@ -131,7 +105,7 @@ app.controller('SolutionDetailCtrl', function($scope, $http, $state, $ionicHisto
                 type: 'button-positive',
                 onTap: function(e) {
                     if (!$scope.bid.BidOffer) {
-                        // 不允许用户关闭，除非输入 BidOffer 密码
+                        
                         e.preventDefault();
                     } else {
                         $http.post(HOST + "api/Bid/ApplyBid", $scope.bid)

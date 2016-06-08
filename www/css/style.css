@@ -100,7 +100,7 @@ html, body {
 	font-size: 1rem;
 }
 
-#main .flex-vertical .layout.ic-project {
+#main .flex-vertical .layout.ic-solution {
 	background-image: url(../img/ic-project.png);
 	/*background-color: #FE0000;*/
 }
@@ -217,5 +217,9 @@ header .title {
 	margin-top: 20px;
 }
 
+.button-small
+{
+	margin:1px;
+}
 
 

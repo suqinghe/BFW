@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCookies'])
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -13,6 +13,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     });
   })
   .constant('HOST', "http://api.szsei.com:9000/")
+  .constant('CompanyID', 1)
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('tab', {
@@ -165,30 +166,24 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           }
         }
       })
-      .state('tab.register', {
+      .state('login', {
+        url: '/login',
+        templateUrl: 'templates/public/login.html',
+        controller: 'LoginCtrl'
+      })
+      .state('register', {
         url: '/register',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/public/register.html',
-            controller: 'AccountCtrl'
-          }
-        }
-      }).state('tab.registercompany', {
+        templateUrl: 'templates/public/register.html',
+        controller: 'AccountCtrl'
+      })
+      .state('registercompany', {
         url: '/registercompany',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/public/company_register.html',
-            controller: 'AccountCtrl'
-          }
-        }
-      }).state('tab.registerlabor', {
+        templateUrl: 'templates/public/company_register.html',
+        controller: 'AccountCtrl'
+      }).state('registerlabor', {
         url: '/registerlabor',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/public/labor_register.html',
-            controller: 'AccountCtrl'
-          }
-        }
+        templateUrl: 'templates/public/labor_register.html',
+        controller: 'AccountCtrl'
       })
 
     .state('tab.financing', {
@@ -205,15 +200,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     // 工程相关
 
     .state('tab.solution', {
-        url: '/solution',
-        views: {
-          'tab-dash': {
-            templateUrl: 'templates/solution/index.html',
-            controller: 'SolutionCtrl'
-          }
+      url: '/solution',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/solution/index.html',
+          controller: 'SolutionCtrl'
         }
-      })
-      .state('tab.solutiondetail', {
+      }
+    })
+
+    .state('tab.solutiondetail', {
         url: '/solution/:solutionId',
         views: {
           'tab-dash': {
@@ -248,8 +244,84 @@ angular.module('starter', ['ionic', 'starter.controllers'])
             controller: 'SplitProjectCtrl'
           }
         }
+      })
+      .state('tab.MyData', {
+        url: '/MyData',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/index.html',
+            controller: 'MyDataCtrl'
+          }
+        }
+      })
+      .state('tab.MySolution', {
+        url: '/solution/:CompanyID/:Status',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/solutionIndex.html',
+            controller: 'MySolutionCtrl'
+          }
+        }
+      })
+      .state('tab.mySolutiondetail', {
+        url: '/mySolution/:solutionId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/solutionDetail.html',
+            controller: 'MySolutionDetailCtrl'
+          }
+        }
+      })
+      .state('tab.MyProject', {
+        url: '/project/:CompanyID/:Status',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/projectIndex.html',
+            controller: 'MyProjectCtrl'
+          }
+        }
+      }).state('tab.MyBid', {
+        url: '/bid/:CompanyID/:Status',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/bidIndex.html',
+            controller: 'MyBidCtrl'
+          }
+        }
+      }).state('tab.bidDetail', {
+        url: '/bid/:bidId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/bidDetail.html',
+            controller: 'MyBidDetailCtrl'
+          }
+        }
+      }).state('tab.bidSign', {
+        url: '/bidSign/:bidId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/bidSign.html',
+            controller: 'MyBidSignCtrl'
+          }
+        }
+      }).state('tab.MyReceiables', {
+        url: '/receivables/:CompanyID/:Status',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/receivablesIndex.html',
+            controller: 'MyReceivablesCtrl'
+          }
+        }
+      }).state('tab.receivableDetail', {
+        url: '/receivable/:receivableId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/receivableDetail.html',
+            controller: 'MyReceivableDetailCtrl'
+          }
+        }
       });
 
 
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/login');
   });

@@ -1,0 +1,36 @@
+<ion-view view-title="招标详情">
+  <ion-content>
+    <div class="list">
+      <ion-item >
+        投标编号
+        <span class="item-note">{{bid.No}}</span>
+      </ion-item>
+      <ion-item >
+        工程名称
+        <span class="item-note">{{bid.SolutionName}}</span>
+      </ion-item>
+      <ion-item >
+        发标公司
+        <span class="item-note">{{bid.PublishBidCompanyName}}</span>
+      </ion-item>
+      <ion-item >
+        投标公司
+        <span class="item-note">{{bid.CompanyName}}</span>
+      </ion-item>
+    <ion-item >
+      投标总价
+      <span class="item-note">{{bid.BidOffer}}</span>
+    </ion-item>
+    <div class="item item-divider">投标信息</div>
+    <ion-item >
+      投标描述
+      <span class="item-note">{{bid.Description}}</span>
+    </ion-item>
+    <div class="item" style="text-align: center;margin: 0 auto;" >
+      <button ng-click="auditBid()" ng-show="bid.Status == 'Apply'" class="button button-small button-positive">投标审核</button>
+      <a href="#/tab/bidSign/{{bid.ID}}" ng-show="bid.Status == 'BidWinning'" class="button button-small button-positive">中标签约</a>
+      <button ng-click="signConfirm()" ng-show="bid.Status == 'Singed'" class="button button-small button-positive">确认签约</button>
+    </div>
+  </div>
+</ion-content>
+</ion-view>

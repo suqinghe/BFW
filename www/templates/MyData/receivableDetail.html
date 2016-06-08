@@ -1,0 +1,54 @@
+<ion-view view-title="账款详情">
+  <ion-content>
+ 
+    <div class="list">
+      <div class="item item-divider">基础信息</div>
+      <ion-item >
+        项目名称
+        <span class="item-note">{{receivable.ProjectName}}</span>
+      </ion-item>
+      <ion-item >
+        账单编号
+        <span class="item-note">{{receivable.No}}</span>
+      </ion-item>
+      <ion-item >
+        账单类型
+        <span class="item-note">{{receivable.BillType}}</span>
+      </ion-item>
+      <ion-item >
+        账单金额
+        <span class="item-note">{{receivable.Amount}}万</span>
+      </ion-item>
+    <!--   <ion-item >
+        账款状态
+        <span class="item-note">{{receivable.Status}}</span>
+      </ion-item> -->
+      <ion-item >
+        付款公司
+        <span class="item-note">{{receivable.PayerName}}</span>
+      </ion-item>
+      <ion-item>
+        收款公司
+        <span class="item-note">{{receivable.PayeeName}}</span>
+      </ion-item>
+      <ion-item >
+        生效日期
+        <span class="item-note">{{receivable.AvailabilityDate}}</span>
+      </ion-item>
+      <ion-item >
+        付款日期
+        <span class="item-note">{{receivable.PaymentDate}}</span>
+      </ion-item>
+
+      <div class="item item-divider">账款简介</div>
+      <span class="item-remark">{{receivable.Description}}</span>
+
+      <div class="item item-divider">备注</div>
+      <span class="item-remark">{{receivable.Remark}}</span>
+
+     <!--  <div class="item" style="text-align: center;margin: 0 auto;" >
+        <button ng-click="startProject({{receivable.Remark}})" class="button button-small button-balanced">申请融资</button>
+      </div> -->
+    </div>
+  </ion-content>
+</ion-view>

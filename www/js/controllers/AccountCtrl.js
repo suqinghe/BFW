@@ -1,45 +1,7 @@
 var app = angular.module('starter');
 
-app.controller('AccountCtrl', function($scope, $http, $state, $ionicPopup, HOST) {
-
-	$scope.user = {};
-	$scope.login = function() {
-		alert(JSON.stringify($scope.user));
-		$state.go('tab.dash', {});
-	}
-
-	$scope.register = function() {
-		$state.go('tab.register', {});
-	}
-
-
-	$scope.company = {
-		"Login": null,
-		"Password": null,
-		"ConfirmPwd": null,
-		"VerifyCode": null,
-		"Qualification": null,
-		"Qualifications": "审图公司,造价咨询,检测机构",
-		"Name": "深圳市建筑公司第62分公司",
-		"FullName": "公司全称：深圳市建筑公司第62分公司",
-		"Address": "深圳市科技中97路",
-		"Code": "187715375",
-		"Principal": "细小姐",
-		"Mobile": "13026629494",
-		"Phone": "0755-45840771",
-		"Email": "kzge6@szsei.com",
-		"WebSite": "http://www.szsei5.com",
-		"ID": 5,
-		"No": null,
-		"Remark": null
-	};
-
-	$scope.Types = {
-		"type": "select",
-		"name": "Type",
-		"value": "建筑公司",
-		"values": ["建筑公司", "劳务公司", "装修公司"]
-	};
+app.controller('AccountCtrl', function($scope, $http, $state, $cookieStore, $ionicPopup, HOST) {
+	$scope.company = $cookieStore.get("Company");
 
 	$http.get(HOST + "api/Company/GetQualifications", {
 			cache: true
@@ -50,15 +12,23 @@ app.controller('AccountCtrl', function($scope, $http, $state, $ionicPopup, HOST)
 			}
 		);
 
+	$scope.logout = function() {
+		$cookieStore.remove("Company");
+		$cookieStore.remove("CompanyId");
+		$state.go('login');
+	};
+
 	$scope.reset_company = function() {
 		$scope.company = {};
 	}
 	$scope.register_company = function() {
+
 		var ids = "";
 		for (var i = $scope.qualifications.length - 1; i >= 0; i--) {
 			if ($scope.qualifications[i].Checked)
 				ids += $scope.qualifications[i].ID + ',';
 		}
+		$scope.company.ID = 0;
 
 		//添加选择的资质信息
 		$scope.company.Qualifications = ids;
@@ -70,10 +40,11 @@ app.controller('AccountCtrl', function($scope, $http, $state, $ionicPopup, HOST)
 						template: response.Message
 					});
 					if (response.IsSuccessed) {
-						$state.go('tab.account', {});
+						$state.go('login');
 					}
 				}
 			);
+
 	}
 
 	$http.get(HOST + "api/labor/getskills", {
@@ -94,7 +65,6 @@ app.controller('AccountCtrl', function($scope, $http, $state, $ionicPopup, HOST)
 		"Tel": "13293477626",
 		"IDCard": "411363198611164208",
 		"BankAccount": "13293477626001",
-		"ID": 2,
 		"No": null,
 		"Remark": null,
 		"Name": "测试姓名545"
@@ -119,7 +89,7 @@ app.controller('AccountCtrl', function($scope, $http, $state, $ionicPopup, HOST)
 						template: response.Message
 					});
 					if (response.IsSuccessed) {
-						$state.go('tab.account', {});
+						$state.go('login');
 					}
 				}
 			);

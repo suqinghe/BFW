@@ -20,7 +20,7 @@ app.controller('CompanyCtrl', function($scope, $http, companyFactory, HOST) {
         );
 
     $scope.GetSimpleDataByQua = function(id, name) {
-        $http.get(HOST + "api/Company/GetBy?name=" + name + "&quaId=" + id, {
+        $http.get(HOST + "api/Company/GetBy?name=" + name + "&quaIds=" + id, {
                 cache: true
             })
             .success(
@@ -29,6 +29,12 @@ app.controller('CompanyCtrl', function($scope, $http, companyFactory, HOST) {
                 }
             );
     }
+
+    $scope.doRefresh = function() {
+        $scope.GetSimpleDataByQua('','');
+        $scope.$broadcast("scroll.refreshComplete");
+    };
+    
 });
 app.controller('CompanyDetailCtrl', function($scope, $http, $stateParams, HOST) {
     var id = $stateParams.companyId;
@@ -41,3 +47,4 @@ app.controller('CompanyDetailCtrl', function($scope, $http, $stateParams, HOST) 
             }
         );
 });
+ 

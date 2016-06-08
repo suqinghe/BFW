@@ -1,0 +1,43 @@
+<ion-view view-title="招标签约">
+  <ion-content ng-controller="MyBidSignCtrl">
+    <div class="list">
+      <ion-item >
+        投标编号
+        <span class="item-note">{{signBid.No}}</span>
+      </ion-item>
+      <ion-item >
+        工程名称
+        <span class="item-note">{{signBid.SolutionName}}</span>
+      </ion-item>
+      <ion-item >
+        发标公司
+        <span class="item-note">{{signBid.PublishBidCompanyName}}</span>
+      </ion-item>
+      <ion-item >
+        投标公司
+        <span class="item-note">{{signBid.CompanyName}}</span>
+      </ion-item>
+    <ion-item >
+      投标总价
+      <span class="item-note">{{signBid.BidOffer}}</span>
+    </ion-item>
+    <div class="item item-divider">投标信息</div>
+    <ion-item >
+      投标描述
+      <span class="item-note">{{signBid.Description}}</span>
+      <textarea placeholder="投标描述"  rows="3" ng-model="signBid.Description"></textarea>
+    </ion-item>
+
+     <ion-item >
+      签约描述
+      <span class="item-note">{{signBid.SignDescription}}</span>
+      <textarea placeholder="签约描述"  rows="3" ng-model="signBid.SignDescription"></textarea>
+    </ion-item>
+
+    <div class="item" style="text-align: center;margin: 0 auto;" >
+      <button ng-click="confirmSign()"  class="button button-small button-positive">确认签约</button>
+      <button ng-click="cancleSign()"  class="button button-small button-positive">取消签约</button>
+    </div>
+  </div>
+</ion-content>
+</ion-view>
