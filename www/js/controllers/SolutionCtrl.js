@@ -24,6 +24,7 @@ app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http,$cook
         .success(
             function(response) {
                 $scope.categories = response;
+                $scope.categories.splice(0,0,{'ID':0,'Name':'全部','Checked':false});
             }
         );
     $http.get(HOST + "api/Solution/GetBy?name=&parentid=0&companyId="+ companyId +"&status=0&categoryid=0")

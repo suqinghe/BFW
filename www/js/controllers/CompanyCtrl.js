@@ -16,6 +16,7 @@ app.controller('CompanyCtrl', function($scope, $http, companyFactory, HOST) {
         .success(
             function(response) {
                 $scope.qualifications = response;
+                $scope.qualifications.splice(0,0,{'ID':0,'Name':'全部','Checked':false});
             }
         );
 

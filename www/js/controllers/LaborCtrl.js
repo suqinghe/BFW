@@ -16,6 +16,8 @@ app.controller('LaborerCtrl', function($scope, $http, HOST) {
         .success(
             function(response) {
                 $scope.skills = response;
+                
+                $scope.skills.splice(0,0,{'ID':0,'Name':'全部','Checked':false});
             }
         );
 

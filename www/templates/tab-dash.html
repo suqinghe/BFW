@@ -1,18 +1,18 @@
 <ion-view view-title="供给通">
   <ion-content>
     <div id="wrap" class="flex-wrap flex-vertical">
-      <ion-slide-box class='swipe' auto-play='true' does-continue='true'>
+      <ion-slide-box class='swipe' auto-play='true' does-continue='true' show-pager="true" pager-click="goIndex(index)">
         <ion-slide class="swipe-wrap">
           <div class="swipe-con">
-            <img ng-src="img/api_1.jpg"></div>
+            <img ng-src="img/api_1.jpg" ng-click="goIndex(0)"></div>
         </ion-slide>
         <ion-slide class="swipe-wrap">
           <div class="swipe-con">
-            <img ng-src="img/api_2.jpg"></div>
+            <img ng-src="img/api_2.jpg" ng-click="goIndex(1)"></div>
         </ion-slide>
         <ion-slide class="swipe-wrap">
           <div class="swipe-con">
-            <img ng-src="img/api_3.jpg"></div>
+            <img ng-src="img/api_3.jpg" ng-click="goIndex(2)"></div>
         </ion-slide>
       </ion-slide-box>
 

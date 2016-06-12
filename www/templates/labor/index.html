@@ -6,9 +6,9 @@
       <button class="button button-clear">取消</button>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <button ng-click="GetSimpleDataBySkill({{skill.ID}},'{{keyword}}')" class="button button-stable button-small" style="margin: 1px;" ng-repeat="skill in skills | limitTo:8">{{skill.Name}}</button>
-    </div>
+    <ion-scroll direction="x" class="item wide-item" style="width: 100%; padding: 3px; border-width: 0px;overflow: auto;">
+      <button ng-click="GetSimpleDataBySkill({{skill.ID}},'{{keyword}}')" class="button button-stable button-small" style="margin: 1px;" ng-repeat="skill in skills">{{skill.Name}}</button>
+    </ion-scroll>
 
     <ion-list>
       <ion-item class="item-icon-right" ng-repeat="labor in labors|filter:keyword" type="item-text-wrap"

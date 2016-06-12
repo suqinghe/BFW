@@ -9,9 +9,9 @@
       <button class="button button-clear">取消</button>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <button ng-click="GetSimpleDataByQua({{qua.ID}},'{{keyword}}')" class="button button-stable button-small" style="margin: 1px;" ng-repeat="qua in qualifications | limitTo:6">{{qua.Name}}</button>
-    </div>
+    <ion-scroll direction="x" class="item wide-item" style="width: 100%; padding: 3px; border-width: 0px;overflow: auto;">
+      <button ng-click="GetSimpleDataByQua({{qua.ID}},'{{keyword}}')" class="button button-stable button-small" style="margin: 1px;" ng-repeat="qua in qualifications">{{qua.Name}}</button>
+    </ion-scroll>
 
     <ion-list>
       <ion-item class="item-icon-right" ng-repeat="company in companys|filter:keyword" type="item-text-wrap"
