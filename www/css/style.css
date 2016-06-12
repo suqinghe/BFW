@@ -93,7 +93,7 @@ html, body {
 
 #main a{
 	text-decoration: none;
-	margin:.3rem;
+	/*margin:.3rem;*/
 }
 
 #main .flex-vertical .layout p {
@@ -223,3 +223,7 @@ header .title {
 }
 
 
+#searchDiv
+{
+	padding:3px;
+}
