@@ -2,10 +2,9 @@ var app = angular.module('starter');
 
 app.controller('MyDataCtrl', function($scope, $http, HOST, $cookieStore) {
     var CompanyID = $cookieStore.get("CompanyId");
-     $scope.groups = [];
-
 
     $scope.GetGroupData = function() {
+        $scope.groups = [];
         $http.get(HOST + "api/Solution/GetMyGroupData?companyid=" + CompanyID, {
                 cache: false
             })
@@ -40,7 +39,7 @@ app.controller('MyDataCtrl', function($scope, $http, HOST, $cookieStore) {
         }
     };
 
-    $scope.doRefresh = function() { 
+    $scope.doRefresh = function() {
         $scope.GetGroupData();
         $scope.$broadcast("scroll.refreshComplete");
     };
@@ -53,28 +52,46 @@ app.controller('MyDataCtrl', function($scope, $http, HOST, $cookieStore) {
 app.controller('MySolutionCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
     var companyid = $stateParams.CompanyID;
     var status = $stateParams.Status;
-    $http.get(HOST + "api/Solution/GetByStatus?companyId=" + companyid + "&status=" + status, {
-            cache: false
-        })
-        .success(
-            function(response) {
-                $scope.mySolutions = response;
-            }
-        );
+
+    $scope.GetGroupData = function() {
+        $http.get(HOST + "api/Solution/GetByStatus?companyId=" + companyid + "&status=" + status, {
+                cache: false
+            })
+            .success(
+                function(response) {
+                    $scope.mySolutions = response;
+                }
+            );
+    }
+    $scope.doRefresh = function() {
+        $scope.GetGroupData();
+        $scope.$broadcast("scroll.refreshComplete");
+    };
+
+    $scope.GetGroupData();
 });
 
 app.controller('MySolutionDetailCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
     var id = $stateParams.solutionId;
-    $scope.solution = {};
-    $http.get(HOST + "/api/solution/getbyid/" + id, {
-            cache: true
-        })
-        .success(
-            function(response) {
-                $scope.solution = response;
-            }
-        );
 
+    $scope.GetSolution = function() {
+        $scope.solution = {};
+        $http.get(HOST + "/api/solution/getbyid/" + id, {
+                cache: false
+            })
+            .success(
+                function(response) {
+                    $scope.solution = response;
+                }
+            );
+    }
+
+    $scope.GetSolution();
+
+    $scope.doRefresh = function() {
+        $scope.GetSolution();
+        $scope.$broadcast("scroll.refreshComplete");
+    };
 
     /*
     完工确认
@@ -167,27 +184,48 @@ app.controller('MySolutionDetailCtrl', function($scope, $http, $state, $ionicHis
 app.controller('MyProjectCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
     var companyid = $stateParams.CompanyID;
     var status = $stateParams.Status;
-    $http.get(HOST + "api/Project/GetByStatus?companyId=" + companyid + "&status=" + status, {
-            cache: false
-        })
-        .success(
-            function(response) {
-                $scope.myProjects = response;
-            }
-        );
+
+
+    $scope.GetMyProjects = function() {
+        $http.get(HOST + "api/Project/GetByStatus?companyId=" + companyid + "&status=" + status, {
+                cache: false
+            })
+            .success(
+                function(response) {
+                    $scope.myProjects = response;
+                }
+            );
+    }
+
+
+    $scope.doRefresh = function() {
+        $scope.GetMyProjects();
+        $scope.$broadcast("scroll.refreshComplete");
+    };
+
+    $scope.GetMyProjects();
 });
 
 app.controller('MyBidCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
-    var companyid = $stateParams.CompanyID;
-    var status = $stateParams.Status;
-    $http.get(HOST + "api/Bid/GetByStatus?companyId=" + companyid + "&status=" + status, {
-            cache: false
-        })
-        .success(
-            function(response) {
-                $scope.myBids = response;
-            }
-        );
+    $scope.GetMyBids = function() {
+        var companyid = $stateParams.CompanyID;
+        var status = $stateParams.Status;
+        $http.get(HOST + "api/Bid/GetByStatus?companyId=" + companyid + "&status=" + status, {
+                cache: false
+            })
+            .success(
+                function(response) {
+                    $scope.myBids = response;
+                }
+            );
+    }
+
+    $scope.doRefresh = function() {
+        $scope.GetMyBids();
+        $scope.$broadcast("scroll.refreshComplete");
+    };
+
+    $scope.GetMyBids();
 });
 
 app.controller('MyBidDetailCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
@@ -318,31 +356,147 @@ app.controller('MyBidSignCtrl', function($scope, $http, $state, $ionicHistory, $
                 }
             );
     }
-
-
 });
 
 
 app.controller('MyReceivablesCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
-    var companyid = $stateParams.CompanyID;
-    var status = $stateParams.Status;
-    $http.get(HOST + "api/receivables/GetByStatus?companyId=" + companyid + "&status=" + status, {
-            cache: false
-        })
-        .success(
-            function(response) {
-                $scope.myReceivables = response;
-            }
-        );
+
+    $scope.GetMyReceivables = function() {
+        var companyid = $stateParams.CompanyID;
+        var status = $stateParams.Status;
+        $http.get(HOST + "api/receivables/GetByStatus?companyId=" + companyid + "&status=" + status, {
+                cache: false
+            })
+            .success(
+                function(response) {
+                    $scope.myReceivables = response;
+                }
+            );
+    }
+    $scope.doRefresh = function() {
+        $scope.GetMyReceivables();
+        $scope.$broadcast("scroll.refreshComplete");
+    };
+
+    $scope.GetMyReceivables();
 });
 
-app.controller('MyReceivableDetailCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+app.controller('MyReceivableDetailCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
     var id = $stateParams.receivableId;
+    var companyId = $cookieStore.get("CompanyId");
     $http.get(HOST + "api/receivables/getbyid/" + id, {
             cache: true
         })
         .success(function(response) {
             $scope.receivable = response;
+            if ($scope.receivable.Status == 'PendingAudit' && $scope.receivable.Payer == companyId) {
+                $scope.receivable.CanAudit = true;
+            } else {
+                $scope.receivable.CanAudit = false;
+            }
         });
+
+    $scope.auditRecievalble = function() {
+        $scope.receivable.ID = id;
+        var myPopup = $ionicPopup.show({
+            template: '<input type="text"  ng-model="receivable.AuditRemark" placeholder="拒绝时请填写拒绝理由">',
+            title: '账单审核',
+            subTitle: '审核对方申请的账单',
+            scope: $scope,
+            buttons: [{
+                text: '取消'
+            }, {
+                text: '拒绝',
+                type: 'button-assertive',
+                onTap: function(e) {
+                    if (!$scope.receivable.AuditRemark) {
+                        e.preventDefault();
+                    } else {
+
+                        $scope.receivable.StrStatus = '4';
+
+                        $http.post(HOST + "api/Receivables/AuditReceivables", $scope.receivable)
+                            .success(
+                                function(response) {
+                                    $ionicPopup.alert({
+                                        title: '确认',
+                                        template: response.Message
+                                    });
+                                    if (response.IsSuccessed) {
+                                        $ionicHistory.goBack();
+                                    }
+                                }
+                            );
+                    }
+                }
+            }, {
+                text: '同意',
+                type: 'button-balanced',
+                onTap: function(e) {
+                    $scope.receivable.StrStatus = '3';
+                    $http.post(HOST + "api/Receivables/AuditReceivables", $scope.receivable)
+                        .success(
+                            function(response) {
+                                $ionicPopup.alert({
+                                    title: '确认',
+                                    template: response.Message
+                                });
+                                if (response.IsSuccessed) {
+                                    $ionicHistory.goBack();
+                                }
+                            }
+                        );
+                }
+            }]
+        });
+    }
+
+});
+
+app.controller('GeneralReceivableCtrl', function($scope, $http, $state, $ionicHistory, $cookieStore, $ionicPopup, $stateParams, HOST) {
+    var id = $stateParams.ProjectId;
+    var companyId = $cookieStore.get("CompanyId");
+    $http.get(HOST + "/api/receivables/getbilltypes", {
+            cache: false
+        })
+        .success(
+            function(response) {
+                $scope.BillTypes = response;
+            }
+        );
+    $http.get(HOST + "/api/receivables/GetCompanys", {
+            cache: false
+        })
+        .success(
+            function(response) {
+                $scope.Companys = response;
+            }
+        );
+
+
+    $scope.receivable = {
+        'ProjectId': id,
+        'AvailabilityDate': '2016-05-26',
+        'PaymentDate': '2016-05-31',
+        'CompanyId': companyId
+    };
+    $scope.confirmReceival = function() {
+        $http.post(HOST + "api/project/GenerateReceivables", $scope.receivable)
+            .success(
+                function(response) {
+                    $ionicPopup.alert({
+                        title: '确认',
+                        template: response.Message
+                    });
+                    if (response.IsSuccessed) {
+                        $ionicHistory.goBack();
+                    }
+                }
+            );
+    }
+
+    $scope.cancleReceival = function() {
+        $ionicHistory.goBack();
+    }
 
 });

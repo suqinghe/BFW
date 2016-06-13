@@ -1,13 +1,13 @@
 <ion-view view-title="建材商城">
 	<ion-nav-buttons side="right">
-		<a class="button button-small ion-navicon-round" ng-click="openPopover($event);">分类</a>
+		<!-- <a class="button button-small ion-navicon-round" ng-click="openPopover($event);">分类</a> -->
 	</ion-nav-buttons>
 	<ion-content>
 		<div class="item-input-inset" id="searchDiv">
 			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
 				<input type="search" ng-model="keyword" placeholder="搜索"/>
 			</label>
-			<button class="button button-clear">取消</button>
+			<button class="button button-clear">清除</button>
 		</div>
 		<ion-list>
 			<ion-item class="item-thumbnail-left item-icon-right" ng-repeat="product in products|filter:keyword" type="item-text-wrap" href="#/tab/product/{{product.ID}}">

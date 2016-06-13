@@ -1,0 +1,67 @@
+<ion-view view-title="生成账单">
+  <ion-content ng-controller="GeneralReceivableCtrl">
+    <form novalidate   name="GeneralReceivableForm">
+      <div class="list">
+        <div class="item item-divider">基础信息</div>
+
+        <label class="item item-input  ">
+          <span class="input-label">
+            账单类型
+            <label style="color:red;">*</label>
+          </span>
+
+          <select ng-model="receivable.BillType">
+            <option ng-repeat="x in BillTypes" value="{{x.ID}}">{{x.Name}}</option>
+          </select>
+        </label>
+        <label class="item item-input  ">
+          <span class="input-label">
+            账单金额
+            <label style="color:red;">*</label>
+          </span>
+          <input type="text" placeholder="输入账单金额" ng-model="receivable.Amount" required></label>
+
+        <label class="item item-input  ">
+          <span class="input-label">
+            付款公司
+            <label style="color:red;">*</label>
+          </span>
+
+          <select ng-model="receivable.Payer">
+            <option ng-repeat="x in Companys" value="{{x.ID}}">{{x.Name}}</option>
+          </select>
+        </label>
+        <label class="item item-input  ">
+          <span class="input-label">
+            收款公司
+            <label style="color:red;">*</label>
+          </span>
+
+          <select ng-model="receivable.Payee">
+            <option ng-repeat="x in Companys" value="{{x.ID}}">{{x.Name}}</option>
+          </select>
+        </label>
+
+        <label class="item item-input  ">
+          <span class="input-label">
+            生效日期
+            <label style="color:red;">*</label>
+          </span>
+          <input type="text" placeholder="请选择" ng-model="receivable.AvailabilityDate" required></label>
+        <label class="item item-input  ">
+          <span class="input-label">
+            付款日期
+            <label style="color:red;">*</label>
+          </span>
+          <input type="text" placeholder="请选择" ng-model="receivable.PaymentDate" required></label>
+        <div class="item item-divider">账款描述</div>
+        <textarea class="item-remark" placeholder="输入账款描述"  rows="3" ng-model="receivable.Description"></textarea>
+
+        <div class="item" style="text-align: center;margin: 0 auto;" >
+          <button ng-click="confirmReceival()"  ng_disabled="!GeneralReceivableForm.$valid"  class="button button-small button-positive">确认</button>
+          <button ng-click="cancleReceival()"  class="button button-small button-positive">取消</button>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

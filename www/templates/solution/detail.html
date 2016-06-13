@@ -35,7 +35,7 @@
       <div class="item item-divider">工程信息</div>
       <ion-item class="item-remove-animate" type="item-text-wrap">
         工程估价
-        <span class="item-note">{{solution.Valuation}}</span>
+        <span class="item-note">{{solution.Valuation}} 万</span>
       </ion-item>
 
       <ion-item class="item-remove-animate" type="item-text-wrap">
@@ -48,10 +48,7 @@
       </ion-item>
       <div class="item item-divider">工程简介</div>
       <span class="item-remark">{{solution.Description}}</span>
-
-      <div class="item item-divider">其他信息</div>
-      <span class="item-remark">{{solution.Remark}}</span>
-
+ 
       <div  style="text-align: center;margin: 0 auto;" >
         <button ng-click="applyBid({{solution.ID}})" ng-if="solution.Status == '招标中'" class="button button-calm button-small">申请招标</button>
       </div>

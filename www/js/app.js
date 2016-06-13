@@ -280,6 +280,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCookies'])
             controller: 'MyProjectCtrl'
           }
         }
+      }).state('tab.generalReceivable', {
+        url: '/generalReceivable/:ProjectId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/generalReceivable.html',
+            controller: 'GeneralReceivableCtrl'
+          }
+        }
       }).state('tab.MyBid', {
         url: '/bid/:CompanyID/:Status',
         views: {

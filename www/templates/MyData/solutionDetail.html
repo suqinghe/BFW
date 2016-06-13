@@ -1,6 +1,8 @@
 <ion-view view-title="工程详情">
   <ion-content ng-controller="MySolutionDetailCtrl">
-
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()"></ion-refresher>
     <div class="list">
       <ion-item class="item-divider">基础信息</ion-item>
       <ion-item class="item-remove-animate" type="item-text-wrap">
@@ -49,9 +51,6 @@
       <div class="item item-divider">工程简介</div>
       <span class="item-remark">{{solution.Description}}</span>
 
-      <div class="item item-divider">其他信息</div>
-      <span class="item-remark">{{solution.Remark}}</span>
-
       <div  style="text-align: center;margin: 0 auto;" >
         <a href="#/tab/splitSolution/{{solution.ID}}" ng-if="solution.Status == '发布审核通过' || solution.Status == '已签约'"  class="button button-positive button-small">拆分工程</a>
         <a href="#/tab/splitProject/{{solution.ID}}" ng-if="solution.Status == '发布审核通过' || solution.Status == '已签约'"  class="button button-royal button-small">拆分项目</a>
@@ -60,7 +59,7 @@
         <button ng-click="stopBid()"  ng-if="solution.Status == '招标中'"  class="button button-balanced button-small">停止招标</button>
         <button ng-click="finishConfirm()" ng-if="solution.Status == '执行中'" class="button button-assertive button-small">完工确认</button>
         <button ng-click="fianlFinishConfirm()"  ng-if="solution.Status == '已完工'"  class="button button-balanced button-small">竣工验收</button>
-</div>
+      </div>
     </div>
   </ion-content>
 </ion-view>

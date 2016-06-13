@@ -1,6 +1,8 @@
 <ion-view view-title="项目详情">
   <ion-content ng-controller="ProjectDetailCtrl">
-
+<ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()"></ion-refresher>
     <div class="list">
       <ion-item >
         项目名称
@@ -40,15 +42,12 @@
       <div class="item item-divider">项目简介</div>
       <span class="item-remark">{{project.Description}}</span>
 
-     
-      <div class="item item-divider">备注</div>      <span class="item-remark">{{project.Remark}}</span>
-
       <div class="item" style="text-align: center;margin: 0 auto;" >
         <button ng-click="startProject()" ng-if="project.Status == '待启动'" class="button button-small button-positive">启动项目</button>
         <button ng-click="updateProgress()" ng-if="project.Status == '执行中'" class="button button-small button-balanced">更新进度</button>
         <button ng-click="applyComplete()" ng-if="project.Status == '待结项'" class="button button-small button-balanced">结项申请</button>
         <button ng-click="checkProject()" ng-if="project.Status == '待验收'" class="button button-small button-balanced">项目验收</button>
-        <button  ng-click="applyFinancing()" ng-if="project.Status != '待启动'" class="button button-small button-balanced">生成账单</button>
+        <a href="#/tab/generalReceivable/{{project.ID}}" ng-if="project.Status != '待启动'" class="button button-small button-balanced">生成账单</a>
       </div>
     </div>
   </ion-content>

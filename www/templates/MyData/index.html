@@ -1,4 +1,4 @@
-<ion-view view-title="我的信息" ng-controller="SolutionCtrl">
+<ion-view view-title="我的信息" ng-controller="MyDataCtrl">
 	<ion-content>
 		<ion-refresher
       pulling-text="下拉刷新..."
@@ -10,7 +10,7 @@
                     ng-class="{active: isGroupShown(group)}"> <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
 					&nbsp;
             {{group.GroupName}}
-					<span class="badge badge-positive">{{group.Count}}</span>
+					<span class="badge badge-light">{{group.Count}}</span>
 				</ion-item>
 				<div ng-repeat="item in group.Items">
 					<ion-item class="item-accordion" 

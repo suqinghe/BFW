@@ -26,73 +26,85 @@
 					<input type="password" placeholder="确认密码和密码一致" ng-model="company.ConfirmPwd" required></label>
 
 				<div class="item item-divider">基础信息</div>
-				<label class="item item-input  ">
-					<span class="input-label">
-						公司编号
-						<label style="color:red;">*</label>
-					</span>
-					<input type="text" placeholder="公司编号" ng-model="company.No" required></label>
-				<label class="item item-input  ">
-					<span class="input-label">
-						公司名称
-						<label style="color:red;">*</label>
-					</span>
-					<input type="text" placeholder="请输入公司名称" ng-model="company.Name" required></label>
-				<label class="item item-input  ">
-					<span class="input-label">公司全称</span>
-					<input type="text" placeholder="请输入公司全称" ng-model="company.FullName"></label>
-				<label class="item item-input  ">
-					<span class="input-label">地址</span>
-					<input type="text" placeholder="请输入公司地址" ng-model="company.Address"></label>
+				<!-- <label class="item item-input  ">
+				<span class="input-label">
+					公司编号
+					<label style="color:red;">*</label>
+				</span>
+				<input type="text" placeholder="公司编号" ng-model="company.No" required></label>
+			-->
+			<label class="item item-input  ">
+				<span class="input-label">
+					公司名称
+					<label style="color:red;">*</label>
+				</span>
+				<input type="text" placeholder="请输入公司名称" ng-model="company.Name" required></label>
+			<label class="item item-input  ">
+				<span class="input-label">
+					公司全称
+					<label style="color:red;">*</label>
+				</span>
+				<input type="text" placeholder="请输入公司全称" ng-model="company.FullName" required></label>
+			<label class="item item-input  ">
+				<span class="input-label">
+					地址
+					<label style="color:red;">*</label>
+				</span>
+				<input type="text" placeholder="请输入公司地址" ng-model="company.Address" required></label>
 
-				<div class="item item-divider">帐号信息</div>
-				<label class="item item-input  ">
-					<span class="input-label">手机</span>
-					<input type="text" placeholder="手机号码" ng-model="company.Mobile"></label>
-				<label class="item item-input  ">
-					<span class="input-label">电话</span>
-					<input type="text" placeholder="固定电话" ng-model="company.Phone"></label>
-				<label class="item item-input  ">
-					<span class="input-label">邮箱</span>
-					<input type="text" placeholder="公司邮箱" ng-model="company.Email"></label>
-				<label class="item item-input  ">
-					<span class="input-label">网址</span>
-					<input type="text" placeholder="公司网址" ng-model="company.WebSite"></label>
+			<div class="item item-divider">帐号信息</div>
+			<label class="item item-input  ">
+				<span class="input-label">手机</span>
+				<input type="text" placeholder="手机号码" ng-model="company.Mobile"></label>
+			<label class="item item-input  ">
+				<span class="input-label">电话</span>
+				<input type="text" placeholder="固定电话" ng-model="company.Phone"></label>
+			<label class="item item-input  ">
+				<span class="input-label">邮箱</span>
+				<input type="text" placeholder="公司邮箱" ng-model="company.Email"></label>
+			<label class="item item-input  ">
+				<span class="input-label">网址</span>
+				<input type="text" placeholder="公司网址" ng-model="company.WebSite"></label>
 
-				<div class="item item-divider">认证信息</div>
-				<label class="item item-input  ">
-					<span class="input-label">法人代表</span>
-					<input type="text" placeholder="法人代表" ng-model="company.Principal"></label>
-				<label class="item item-input  ">
-					<span class="input-label">组织机构代码</span>
-					<input type="text" placeholder="必填" ng-model="company.Code"></label>
+			<div class="item item-divider">认证信息</div>
+			<label class="item item-input  ">
+				<span class="input-label">
+					法人代表
+					<label style="color:red;">*</label>
+				</span>
+				<input type="text" placeholder="法人代表" ng-model="company.Principal" required></label>
+			<label class="item item-input  ">
+				<span class="input-label">
+					组织机构代码
+					<label style="color:red;">*</label>
+				</span>
+				<input type="text" placeholder="必填" ng-model="company.Code" required></label>
 
-				<div class="item item-divider">资质信息</div>
-				<ion-checkbox ng-repeat="item in qualifications"
+			<div class="item item-divider">资质信息</div>
+			<ion-checkbox ng-repeat="item in qualifications"
                         ng-model="item.Checked" 
                         ng-checked="item.Checked">{{ item.Name }}</ion-checkbox>
 
-				<div class="item item-divider">其他信息</div>
-				<label class="item item-input  ">
-					<textarea placeholder="输入备注"  rows="3" ng-model="company.Remark"></textarea>
-				</label>
+			<div class="item item-divider">其他信息</div>
+			<label class="item item-input  ">
+				<textarea placeholder="输入备注"  rows="3" ng-model="company.Remark"></textarea>
+			</label>
 
-				
-				<div class="item item-checkbox">
-					<label class="checkbox">
-						<input type="checkbox" checked=""></label>
-					同意
-					<a href="">超能国际用户协议</a>
-					并注册
-				</div>
+			<div class="item item-checkbox">
+				<label class="checkbox">
+					<input type="checkbox" checked=""></label>
+				同意
+				<a href="">超能国际用户协议</a>
+				并注册
+			</div>
 
-				<div class="padding">
-					<button class="button button-full button-balanced"  ng_disabled="!registerCompanyForm.$valid" ng-click="register_company()">注册</button>
-					<button class="button button-block button-calm"  ng-click="reset_company()">重置</button>
-				</div>
+			<div class="padding">
+				<button class="button button-full button-balanced"  ng_disabled="!registerCompanyForm.$valid" ng-click="register_company()">注册</button>
+				<button class="button button-block button-calm"  ng-click="reset_company()">重置</button>
+			</div>
 
-			</form>
+		</form>
 
-		</div>
-	</ion-content>
+	</div>
+</ion-content>
 </ion-view>

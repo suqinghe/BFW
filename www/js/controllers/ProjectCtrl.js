@@ -152,14 +152,23 @@
 
  app.controller('ProjectDetailCtrl', function($scope, $http, $stateParams, $ionicHistory, $ionicPopup, HOST) {
    var id = $stateParams.projectId;
-   $scope.project = {};
-   $http.get(HOST + "api/project/getbyid/" + id, {
-       cache: true
-     })
-     .success(function(response) {
-       $scope.project = response;
-     });
 
+   $scope.getProjectById = function() {
+     $scope.project = {};
+     $http.get(HOST + "api/project/getbyid/" + id, {
+         cache: false
+       })
+       .success(function(response) {
+         $scope.project = response;
+       });
+
+   }
+   $scope.getProjectById();
+
+   $scope.doRefresh = function() {
+     $scope.getProjectById();
+     $scope.$broadcast("scroll.refreshComplete");
+   }
    $scope.startProject = function() {
      $http.post(HOST + "api/Project/StartProject/" + id)
        .success(
@@ -286,7 +295,6 @@
            if (!$scope.project.Progress) {
              e.preventDefault();
            } else {
-             alert(1);
              $http.post(HOST + "api/project/UpdateProgress", $scope.project)
                .success(
                  function(response) {

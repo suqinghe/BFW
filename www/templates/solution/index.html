@@ -9,9 +9,10 @@
 		<div class="item-input-inset" id="searchDiv">
 			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
 				<input type="search" ng-model="keyword" placeholder="搜索"></label>
-			<button class="button button-clear">取消</button>
+			<button class="button button-clear" ng-click="clearSearch()">清除</button>
 		</div>
 
+		 
 		<ion-scroll direction="x" class="item wide-item" style="width: 100%; padding: 3px; border-width: 0px;overflow: auto;">
 			<button ng-click="GetSimpleDataByCId({{category.ID}},'{{keyword}}')" class="button button-stable button-small" style="margin: 1px;" ng-repeat="category in categories">{{category.Name}}</button>
 		</ion-scroll>
