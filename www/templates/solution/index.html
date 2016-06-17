@@ -21,6 +21,7 @@
 			<ion-item class=" item-icon-right" ng-repeat="item in solutions|filter:keyword" type="item-text-wrap"
 href="#/tab/solution/{{item.ID}}">
 				<h2>{{item.Name}}</h2>
+				<p>工程编号：{{item.No}}</p>
 				<p>工程状态：{{item.Status}}</p>
 				<p>开始时间：{{item.StartDate}}</p>
 				<p>工程分类：{{item.CategoryName}}</p>

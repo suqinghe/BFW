@@ -69,6 +69,7 @@ angular.module('starter.controllers', [])
 						if (response.IsSuccessed) {
 							$cookieStore.put("Company", response.Company);
 							$cookieStore.put("CompanyId", response.Company.ID);
+							$cookieStore.put("UserId", response.User.ID);
 							$state.go('tab.dash');
 						} else {
 							$ionicPopup.alert({

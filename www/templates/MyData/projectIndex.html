@@ -14,6 +14,7 @@
 			<ion-item class="item-icon-right" collection-repeat="project in myProjects|filter:keyword" type="item-text-wrap"
 href="#/tab/project/{{project.ID}}">
 				<h2>{{project.Name}}</h2>
+				<p>项目编号：{{project.No}}</p>
 				<p>发布公司：{{project.CompanyName}}</p>
 				<p>项目时间：{{project.ProjectDate}}</p>
 				<p>项目状态：{{project.Status}}</p>

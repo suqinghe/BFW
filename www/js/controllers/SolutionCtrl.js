@@ -2,6 +2,7 @@ var app = angular.module('starter');
 
 app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, $cookieStore, HOST) {
     var companyId = $cookieStore.get("CompanyId");
+    var userId = $cookieStore.get("UserId");
     $scope.GetRandomNum = function(Min, Max) {
         var Range = Max - Min;
         var Rand = Math.random();
@@ -70,7 +71,7 @@ app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, $coo
                 });
             }
         );
-    $http.get(HOST + "api/Solution/GetBy?name=&parentid=0&companyId=" + companyId + "&status=0&categoryid=0")
+    $http.get(HOST + "api/Solution/GetBy?name=&parentid=0&companyId=0&status=9&categoryid=0")
         .success(
             function(response) {
                 $scope.solutions = response;
@@ -78,7 +79,7 @@ app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, $coo
         );
 
     $scope.GetSimpleDataByCId = function(id, name) {
-        $http.get(HOST + "api/Solution/GetBy?name=" + name + "&parentid=0&companyId=" + companyId + "&status=0&categoryid=" + id, {
+        $http.get(HOST + "api/Solution/GetBy?name=" + name + "&parentid=0&companyId=0&status=9&categoryid=" + id, {
                 cache: false
             })
             .success(
@@ -105,7 +106,7 @@ app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, $coo
     $scope.publish = function() {
 
         $scope.solution.CompanyId = companyId;
-
+        $scope.solution.Creator = userId;
         if ($scope.solution.CategoryId == 0) {
             alert("发布工程时必须选择分类");
         } else if ($scope.solution.Name == null) {
@@ -137,6 +138,7 @@ app.controller('SolutionCtrl', function($scope, $state, $ionicPopup, $http, $coo
 
 app.controller('SolutionDetailCtrl', function($scope, $http, $state, $ionicHistory, $cookieStore, $ionicPopup, $stateParams, HOST) {
     var companyId = $cookieStore.get("CompanyId");
+    var userId = $cookieStore.get("UserId");
     var id = $stateParams.solutionId;
     $scope.solution = {};
     $http.get(HOST + "/api/solution/getbyid/" + id, {
@@ -149,49 +151,60 @@ app.controller('SolutionDetailCtrl', function($scope, $http, $state, $ionicHisto
         );
 
     $scope.applyBid = function() {
+        if ($scope.solution.OwnCompanyId == companyId) {
+            $ionicPopup.alert({
+                title: '系统提示',
+                template: "自己公司不能投自己发布的招标"
+            });
+        } else {
+            $scope.bid = {
+                'SolutionId': id,
+                'CompanyId': companyId,
+                'PublishBidCompanyId':$scope.solution.OwnCompanyId ,
+                'Creator':userId
+            }
+            var myPopup = $ionicPopup.show({
+                template: '<input type="text"  ng-model="bid.BidOffer">',
+                title: '投标确认',
+                subTitle: '请输入投标金额',
+                scope: $scope,
+                buttons: [{
+                    text: '取消'
+                }, {
+                    text: '<b>投标</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        if (!$scope.bid.BidOffer) {
 
-        $scope.bid = {
-            'SolutionId': id,
-            'CompanyId': companyId
-        }
-        var myPopup = $ionicPopup.show({
-            template: '<input type="text"  ng-model="bid.BidOffer">',
-            title: '投标确认',
-            subTitle: '请输入投标金额',
-            scope: $scope,
-            buttons: [{
-                text: '取消'
-            }, {
-                text: '<b>投标</b>',
-                type: 'button-positive',
-                onTap: function(e) {
-                    if (!$scope.bid.BidOffer) {
-
-                        e.preventDefault();
-                    } else {
-                        $http.post(HOST + "api/Bid/ApplyBid", $scope.bid)
-                            .success(
-                                function(response) {
-                                    $ionicPopup.alert({
-                                        title: '确认',
-                                        template: response.Message
-                                    });
-                                    if (response.IsSuccessed) {
-                                        $state.go('tab.solution', {});
+                            e.preventDefault();
+                        } else {
+                            $http.post(HOST + "api/Bid/ApplyBid", $scope.bid)
+                                .success(
+                                    function(response) {
+                                        $ionicPopup.alert({
+                                            title: '确认',
+                                            template: response.Message
+                                        });
+                                        if (response.IsSuccessed) {
+                                            $state.go('tab.solution', {});
+                                        }
                                     }
-                                }
-                            );
+                                );
+                        }
                     }
-                }
-            }, ]
-        });
+                }, ]
+            });
+        }
+
     };
 
 });
 
 
-app.controller('SplitSolutionCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+app.controller('SplitSolutionCtrl', function($scope, $http, $state,$cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
     var id = $stateParams.solutionId;
+    var companyId = $cookieStore.get("CompanyId");
+    var userId = $cookieStore.get("UserId");
     $scope.solution = {};
     $http.get(HOST + "api/solution/GetSplitSolution/" + id, {
             cache: true
@@ -203,6 +216,10 @@ app.controller('SplitSolutionCtrl', function($scope, $http, $state, $ionicHistor
         );
 
     $scope.splitSolution = function() {
+
+        $scope.solution.Creator = userId;
+        $scope.solution.CompanyId = companyId;
+        
         $http.post(HOST + "api/Solution/postadd", $scope.solution)
             .success(
                 function(response) {
@@ -223,7 +240,9 @@ app.controller('SplitSolutionCtrl', function($scope, $http, $state, $ionicHistor
 });
 
 
-app.controller('SplitProjectCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+app.controller('SplitProjectCtrl', function($scope, $http, $state, $cookieStore,$ionicHistory, $ionicPopup, $stateParams, HOST) {
+    var companyId = $cookieStore.get("CompanyId");
+    var userId = $cookieStore.get("UserId");
     var id = $stateParams.solutionId;
     $scope.project = {};
     $http.get(HOST + "api/solution/GetSplitProject/" + id, {
@@ -236,6 +255,8 @@ app.controller('SplitProjectCtrl', function($scope, $http, $state, $ionicHistory
         );
 
     $scope.splitProject = function() {
+        $scope.project.Creator = userId;
+        $scope.project.CompanyId = companyId;
         $http.post(HOST + "api/Project/postadd", $scope.project)
             .success(
                 function(response) {
@@ -250,7 +271,7 @@ app.controller('SplitProjectCtrl', function($scope, $http, $state, $ionicHistory
             );
     }
 
-     $scope.reset = function() {
+    $scope.reset = function() {
         $scope.project = {};
     }
 });

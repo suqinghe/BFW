@@ -2,7 +2,7 @@ var app = angular.module('starter');
 
 app.controller('MyDataCtrl', function($scope, $http, HOST, $cookieStore) {
     var CompanyID = $cookieStore.get("CompanyId");
-
+    var userId = $cookieStore.get("UserId");
     $scope.GetGroupData = function() {
         $scope.groups = [];
         $http.get(HOST + "api/Solution/GetMyGroupData?companyid=" + CompanyID, {
@@ -71,9 +71,9 @@ app.controller('MySolutionCtrl', function($scope, $http, $state, $ionicHistory, 
     $scope.GetGroupData();
 });
 
-app.controller('MySolutionDetailCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+app.controller('MySolutionDetailCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
     var id = $stateParams.solutionId;
-
+    var userId = $cookieStore.get("UserId");
     $scope.GetSolution = function() {
         $scope.solution = {};
         $http.get(HOST + "/api/solution/getbyid/" + id, {
@@ -128,7 +128,7 @@ app.controller('MySolutionDetailCtrl', function($scope, $http, $state, $ionicHis
             );
     };
     $scope.publishBid = function() {
-        $http.post(HOST + "api/Solution/PublishBid/" + id)
+        $http.post(HOST + "api/Solution/PublishBid/" + id )
             .success(
                 function(response) {
                     $ionicPopup.alert({
@@ -228,8 +228,9 @@ app.controller('MyBidCtrl', function($scope, $http, $state, $ionicHistory, $ioni
     $scope.GetMyBids();
 });
 
-app.controller('MyBidDetailCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+app.controller('MyBidDetailCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
     var id = $stateParams.bidId;
+    var userId = $cookieStore.get("UserId");
     $http.get(HOST + "api/bid/getbyid/" + id, {
             cache: true
         })
@@ -238,6 +239,7 @@ app.controller('MyBidDetailCtrl', function($scope, $http, $state, $ionicHistory,
         });
 
     $scope.signConfirm = function() {
+        $scope.bid.Creator = userId;
         var myPopup = $ionicPopup.show({
             template: '',
             title: '签约确认',
@@ -269,7 +271,8 @@ app.controller('MyBidDetailCtrl', function($scope, $http, $state, $ionicHistory,
     $scope.auditBid = function() {
 
         $scope.bid = {
-            'ID': id
+            'ID': id,
+            'Creator': userId
         };
         var myPopup = $ionicPopup.show({
             template: '<input type="text"  ng-model="bid.AuditRemark" placeholder="拒绝时请填写拒绝理由">',
@@ -330,6 +333,7 @@ app.controller('MyBidDetailCtrl', function($scope, $http, $state, $ionicHistory,
 app.controller('MyBidSignCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, $cookieStore, HOST) {
     var id = $stateParams.bidId;
     var CompanyID = $cookieStore.get("CompanyId");
+    var userId = $cookieStore.get("UserId");
     $http.get(HOST + "api/bid/getbyid/" + id, {
             cache: false
         })
@@ -343,6 +347,7 @@ app.controller('MyBidSignCtrl', function($scope, $http, $state, $ionicHistory, $
 
     $scope.confirmSign = function() {
         $scope.signBid.CompanyId = CompanyID;
+        $scope.signBid.Creator = userId;
         $http.post(HOST + "api/Bid/Sign", $scope.signBid)
             .success(
                 function(response) {
@@ -384,6 +389,8 @@ app.controller('MyReceivablesCtrl', function($scope, $http, $state, $ionicHistor
 app.controller('MyReceivableDetailCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
     var id = $stateParams.receivableId;
     var companyId = $cookieStore.get("CompanyId");
+
+    var userId = $cookieStore.get("UserId");
     $http.get(HOST + "api/receivables/getbyid/" + id, {
             cache: true
         })
@@ -398,6 +405,7 @@ app.controller('MyReceivableDetailCtrl', function($scope, $http, $state, $cookie
 
     $scope.auditRecievalble = function() {
         $scope.receivable.ID = id;
+        $scope.receivable.Creator = userId;
         var myPopup = $ionicPopup.show({
             template: '<input type="text"  ng-model="receivable.AuditRemark" placeholder="拒绝时请填写拒绝理由">',
             title: '账单审核',
@@ -456,6 +464,8 @@ app.controller('MyReceivableDetailCtrl', function($scope, $http, $state, $cookie
 app.controller('GeneralReceivableCtrl', function($scope, $http, $state, $ionicHistory, $cookieStore, $ionicPopup, $stateParams, HOST) {
     var id = $stateParams.ProjectId;
     var companyId = $cookieStore.get("CompanyId");
+
+    var userId = $cookieStore.get("UserId");
     $http.get(HOST + "/api/receivables/getbilltypes", {
             cache: false
         })
@@ -478,7 +488,8 @@ app.controller('GeneralReceivableCtrl', function($scope, $http, $state, $ionicHi
         'ProjectId': id,
         'AvailabilityDate': '2016-05-26',
         'PaymentDate': '2016-05-31',
-        'CompanyId': companyId
+        'CompanyId': companyId,
+        'Creator': userId
     };
     $scope.confirmReceival = function() {
         $http.post(HOST + "api/project/GenerateReceivables", $scope.receivable)

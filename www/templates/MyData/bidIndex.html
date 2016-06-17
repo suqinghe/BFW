@@ -14,6 +14,7 @@
 			<ion-item class="item-icon-right" collection-repeat="bid in myBids|filter:keyword" type="item-text-wrap"
 href="#/tab/bid/{{bid.ID}}">
 				<h2>{{bid.SolutionName}}</h2>
+				<p>投标编号：{{bid.No}}</p>
 				<p>投标状态：{{bid.Status}}</p>
 				<p>投标公司：{{bid.CompanyName}}</p>
 				<p>竞标出价：{{bid.BidOffer}}</p> <i class="icon ion-chevron-right icon-accessory"></i>
