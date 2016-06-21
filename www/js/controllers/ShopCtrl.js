@@ -1,16 +1,6 @@
 var app = angular.module('starter');
 
-app.controller('ShopCtrl', function($scope, $http, $ionicPopover,HOST) {
-
-	$http.get(HOST + "api/product/getby?name=&categoryid=0", {
-			cache: true
-		})
-		.success(
-			function(response) {
-				$scope.products = response;
-			}
-		);
-
+app.controller('ShopCtrl', function($scope, $http, $ionicPopover, HOST) {
 	$http.get(HOST + "api/product/getcategories?parentid=0", {
 			cache: true
 		})
@@ -25,7 +15,21 @@ app.controller('ShopCtrl', function($scope, $http, $ionicPopover,HOST) {
 				});
 			}
 		);
+	$scope.GetProducts = function() {
+		$http.get(HOST + "api/product/getby?name=&categoryid=0", {
+				cache: true
+			})
+			.success(
+				function(response) {
+					$scope.products = response;
+				}
+			);
+	}
 
+	$scope.doRefresh = function() {
+		$scope.GetProducts();
+		$scope.$broadcast("scroll.refreshComplete");
+	};
 
 
 	$scope.GetProductsByCategory = function(id) {
@@ -50,17 +54,27 @@ app.controller('ShopCtrl', function($scope, $http, $ionicPopover,HOST) {
 	$scope.closePopover = function() {
 		$scope.popover.hide();
 	};
+
+	$scope.GetProducts();
 });
 
 app.controller('ProductDetailCtrl', function($scope, $stateParams, $http, HOST) {
 	var id = $stateParams.productId;
+	$scope.GetProductDetail = function() {
+		$http.get(HOST + "api/product/getbyid/" + id, {
+				cache: true
+			})
+			.success(
+				function(response) {
+					$scope.product = response;
+				}
+			);
+	}
 
-	$http.get(HOST + "api/product/getbyid/" + id, {
-			cache: true
-		})
-		.success(
-			function(response) {
-				$scope.product = response;
-			}
-		);
+	$scope.doRefresh = function() {
+		$scope.GetProductDetail();
+		$scope.$broadcast("scroll.refreshComplete");
+	};
+
+	$scope.GetProductDetail();
 });

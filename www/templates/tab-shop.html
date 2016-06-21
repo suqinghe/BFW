@@ -1,8 +1,9 @@
-<ion-view view-title="建材商城">
-	<ion-nav-buttons side="right">
-		<!-- <a class="button button-small ion-navicon-round" ng-click="openPopover($event);">分类</a> -->
-	</ion-nav-buttons>
+<ion-view view-title="建材商城" ng-controller="ShopCtrl">
+	<ion-nav-buttons side="right"></ion-nav-buttons>
 	<ion-content>
+	<ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()"></ion-refresher>
 		<div class="item-input-inset" id="searchDiv">
 			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
 				<input type="search" ng-model="keyword" placeholder="搜索"/>

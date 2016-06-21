@@ -1,6 +1,8 @@
-<ion-view view-title="产品详情">
+<ion-view view-title="产品详情" ng-controller="ProductDetailCtrl">
 	<ion-content class="padding">
-
+		<ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()"></ion-refresher>
 		<ion-slide-box class='swipe' auto-play='true' does-continue='true'>
 			<ion-slide class="swipe-wrap">
 				<div class="swipe-con">
@@ -17,7 +19,7 @@
 				<h3>{{product.Name}}</h3>
 				<p>{{product.CategoryName}}</p>
 				<p> <strong>价格范围：</strong>
-					{{product.MinPrice | currency:'￥':0}}-{{product.MaxPrice | currency:'￥':0}}
+					{{product.MinPrice | currency:'￥':2}}-{{product.MaxPrice | currency:'￥':2}} / {{product.Unit}}
 				</p>
 				<p> <strong>产品供应商：</strong>
 					{{product.SupplyCount}} 家
