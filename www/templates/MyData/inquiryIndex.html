@@ -1,0 +1,25 @@
+<ion-view ng-controller="MyInquiryCtrl"  view-title="我的询价">
+
+	<ion-content>
+		<ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()"></ion-refresher>
+		<div class="item-input-inset" id="searchDiv">
+			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" ng-model="keyword" placeholder="搜索"></label>
+			<button class="button button-clear">取消</button>
+		</div>
+
+		<ion-list>
+			<ion-item class="item-icon-right" collection-repeat="inquiry in myInquiries|filter:keyword" type="item-text-wrap"
+href="#/tab/inquiryDetail/{{inquiry.ID}}">
+				<h2>{{inquiry.No}}</h2>
+				<p>产品名称：{{inquiry.ProductName}}</p>
+				<p>询价公司：{{inquiry.CompanyName}}</p>
+				<p>询价状态：{{inquiry.Status}}</p>
+				<p>采购数量：{{inquiry.QTY}}</p>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+
+</ion-view>

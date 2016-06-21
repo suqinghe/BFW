@@ -58,8 +58,12 @@ app.controller('ShopCtrl', function($scope, $http, $ionicPopover, HOST) {
 	$scope.GetProducts();
 });
 
-app.controller('ProductDetailCtrl', function($scope, $stateParams, $http, HOST) {
+app.controller('ProductDetailCtrl', function($scope, $stateParams, $ionicHistory,$ionicPopup, $cookieStore, $http, HOST) {
 	var id = $stateParams.productId;
+	var name = $stateParams.productName;
+	var companyId = $cookieStore.get("CompanyId");
+	var userId = $cookieStore.get("UserId");
+
 	$scope.GetProductDetail = function() {
 		$http.get(HOST + "api/product/getbyid/" + id, {
 				cache: true
@@ -76,5 +80,37 @@ app.controller('ProductDetailCtrl', function($scope, $stateParams, $http, HOST) 
 		$scope.$broadcast("scroll.refreshComplete");
 	};
 
+	$scope.inquiry = {
+		ProductId: id,
+		ProductName: name,
+		CompanyId: companyId,
+		Creator: userId,
+		Updater: userId
+	};
+
+	$scope.SubmitInquiry = function() {
+		$http.post(HOST + "api/Inquiry/postadd", $scope.inquiry)
+			.success(
+				function(response) {
+					$ionicPopup.alert({
+						title: '确认',
+						template: response.Message
+					});
+					if (response.IsSuccessed) {
+						$ionicHistory.goBack();
+					}
+				}
+			);
+	}
+
+	$scope.reset = function() {
+		$scope.inquiry = {
+			ProductId: id,
+			ProductName: name,
+			CompanyId: companyId,
+			Creater: userId,
+			Updator: userId
+		};
+	}
 	$scope.GetProductDetail();
 });

@@ -1,0 +1,27 @@
+<ion-view view-title="产品询价" ng-controller="ProductDetailCtrl">
+	<ion-content class="padding">
+		<form novalidate   name="InquiryForm">
+			<div class="list" style="margin: 5px 0px 10px 0px;">
+				<ion-item class="item-remove-animate" type="item-text-wrap">
+					询价产品
+					<span class="item-note">{{inquiry.ProductName}}</span>
+				</ion-item>
+				<label class="item item-input  ">
+					<span class="input-label">
+						采购数量
+						<label style="color:red;">*</label>
+					</span>
+					<input type="text" placeholder="拟采购数量" ng-model="inquiry.QTY" required></label>
+				<div class="item item-divider">询价描述</div>
+				<textarea class="item item-remark" placeholder="输入询价描述"  rows="3" ng-model="inquiry.Description"></textarea>
+
+			</div>
+			<div class="padding">
+				<button class="button button-full button-balanced"  ng_disabled="!InquiryForm.$valid" ng-click="SubmitInquiry()">提交</button>
+				<button class="button button-block button-calm"  ng-click="reset()">重置</button>
+			</div>
+
+		</form>
+
+	</ion-content>
+</ion-view>

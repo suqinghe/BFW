@@ -1,0 +1,18 @@
+<ion-view view-title="询价详情">
+  <ion-content ng-controller="MyInquiryDetailCtrl">
+    <div class="list">
+     <ion-item >
+        询价编号
+        <span class="item-note">{{inquiry.No}}</span>
+      </ion-item>
+      <ion-item >
+        询价产品
+        <span class="item-note">{{inquiry.ProductName}}</span>
+      </ion-item>
+      <div class="item item-divider">询价描述</div>
+      <span class="item-remark">{{inquiry.Description}}</span>
+      <div class="item item-divider">询价回复</div>
+      <span class="item-remark">{{inquiry.Reply}}</span>
+    </div>
+  </ion-content>
+</ion-view>

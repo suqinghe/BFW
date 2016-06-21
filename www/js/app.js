@@ -120,6 +120,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCookies'])
             controller: 'ProductDetailCtrl'
           }
         }
+      }).state('tab.inquiry', {
+        url: '/inquiry/:productId/:productName',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/shop/Inquiry.html',
+            controller: 'ProductDetailCtrl'
+          }
+        }
       })
       .state('tab.account', {
         url: '/account',
@@ -326,6 +334,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCookies'])
           'tab-dash': {
             templateUrl: 'templates/MyData/receivableDetail.html',
             controller: 'MyReceivableDetailCtrl'
+          }
+        }
+      }).state('tab.MyInquiry', {
+        url: '/inquiries/:CompanyID/:Status',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/inquiryIndex.html',
+            controller: 'MyInquiryCtrl'
+          }
+        }
+      }).state('tab.inquiryDetail', {
+        url: '/inquiryDetail/:inquiryId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/inquiryDetail.html',
+            controller: 'MyInquiryDetailCtrl'
           }
         }
       });

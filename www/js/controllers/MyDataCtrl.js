@@ -369,7 +369,7 @@ app.controller('MyReceivablesCtrl', function($scope, $http, $state, $ionicHistor
     $scope.GetMyReceivables = function() {
         var companyid = $stateParams.CompanyID;
         var status = $stateParams.Status;
-        $http.get(HOST + "api/receivables/GetByStatus?companyId=" + companyid + "&status=" + status, {
+        $http.get(HOST + "api/inquirys/GetByStatus?companyId=" + companyid + "&status=" + status, {
                 cache: false
             })
             .success(
@@ -387,27 +387,27 @@ app.controller('MyReceivablesCtrl', function($scope, $http, $state, $ionicHistor
 });
 
 app.controller('MyReceivableDetailCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
-    var id = $stateParams.receivableId;
+    var id = $stateParams.inquiryId;
     var companyId = $cookieStore.get("CompanyId");
 
     var userId = $cookieStore.get("UserId");
-    $http.get(HOST + "api/receivables/getbyid/" + id, {
+    $http.get(HOST + "api/inquirys/getbyid/" + id, {
             cache: true
         })
         .success(function(response) {
-            $scope.receivable = response;
-            if ($scope.receivable.Status == 'PendingAudit' && $scope.receivable.Payer == companyId) {
-                $scope.receivable.CanAudit = true;
+            $scope.inquiry = response;
+            if ($scope.inquiry.Status == 'PendingAudit' && $scope.inquiry.Payer == companyId) {
+                $scope.inquiry.CanAudit = true;
             } else {
-                $scope.receivable.CanAudit = false;
+                $scope.inquiry.CanAudit = false;
             }
         });
 
     $scope.auditRecievalble = function() {
-        $scope.receivable.ID = id;
-        $scope.receivable.Creator = userId;
+        $scope.inquiry.ID = id;
+        $scope.inquiry.Creator = userId;
         var myPopup = $ionicPopup.show({
-            template: '<input type="text"  ng-model="receivable.AuditRemark" placeholder="拒绝时请填写拒绝理由">',
+            template: '<input type="text"  ng-model="inquiry.AuditRemark" placeholder="拒绝时请填写拒绝理由">',
             title: '账单审核',
             subTitle: '审核对方申请的账单',
             scope: $scope,
@@ -417,13 +417,13 @@ app.controller('MyReceivableDetailCtrl', function($scope, $http, $state, $cookie
                 text: '拒绝',
                 type: 'button-assertive',
                 onTap: function(e) {
-                    if (!$scope.receivable.AuditRemark) {
+                    if (!$scope.inquiry.AuditRemark) {
                         e.preventDefault();
                     } else {
 
-                        $scope.receivable.StrStatus = '4';
+                        $scope.inquiry.StrStatus = '4';
 
-                        $http.post(HOST + "api/Receivables/AuditReceivables", $scope.receivable)
+                        $http.post(HOST + "api/Receivables/AuditReceivables", $scope.inquiry)
                             .success(
                                 function(response) {
                                     $ionicPopup.alert({
@@ -441,8 +441,8 @@ app.controller('MyReceivableDetailCtrl', function($scope, $http, $state, $cookie
                 text: '同意',
                 type: 'button-balanced',
                 onTap: function(e) {
-                    $scope.receivable.StrStatus = '3';
-                    $http.post(HOST + "api/Receivables/AuditReceivables", $scope.receivable)
+                    $scope.inquiry.StrStatus = '3';
+                    $http.post(HOST + "api/Receivables/AuditReceivables", $scope.inquiry)
                         .success(
                             function(response) {
                                 $ionicPopup.alert({
@@ -466,7 +466,7 @@ app.controller('GeneralReceivableCtrl', function($scope, $http, $state, $ionicHi
     var companyId = $cookieStore.get("CompanyId");
 
     var userId = $cookieStore.get("UserId");
-    $http.get(HOST + "/api/receivables/getbilltypes", {
+    $http.get(HOST + "/api/inquirys/getbilltypes", {
             cache: false
         })
         .success(
@@ -474,7 +474,7 @@ app.controller('GeneralReceivableCtrl', function($scope, $http, $state, $ionicHi
                 $scope.BillTypes = response;
             }
         );
-    $http.get(HOST + "/api/receivables/GetCompanys", {
+    $http.get(HOST + "/api/inquirys/GetCompanys", {
             cache: false
         })
         .success(
@@ -484,7 +484,7 @@ app.controller('GeneralReceivableCtrl', function($scope, $http, $state, $ionicHi
         );
 
 
-    $scope.receivable = {
+    $scope.inquiry = {
         'ProjectId': id,
         'AvailabilityDate': '2016-05-26',
         'PaymentDate': '2016-05-31',
@@ -492,7 +492,7 @@ app.controller('GeneralReceivableCtrl', function($scope, $http, $state, $ionicHi
         'Creator': userId
     };
     $scope.confirmReceival = function() {
-        $http.post(HOST + "api/project/GenerateReceivables", $scope.receivable)
+        $http.post(HOST + "api/project/GenerateReceivables", $scope.inquiry)
             .success(
                 function(response) {
                     $ionicPopup.alert({
@@ -510,4 +510,45 @@ app.controller('GeneralReceivableCtrl', function($scope, $http, $state, $ionicHi
         $ionicHistory.goBack();
     }
 
+});
+
+
+
+
+
+
+app.controller('MyInquiryCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+
+    $scope.GetMyInquiry = function() {
+        var companyid = $stateParams.CompanyID;
+        var status = $stateParams.Status;
+        $http.get(HOST + "api/inquiry/GetByStatus?companyId=" + companyid + "&status=" + status, {
+                cache: false
+            })
+            .success(
+                function(response) {
+                    $scope.myInquiries = response;
+                }
+            );
+    }
+    $scope.doRefresh = function() {
+        $scope.GetMyInquiry();
+        $scope.$broadcast("scroll.refreshComplete");
+    };
+
+    $scope.GetMyInquiry();
+});
+
+app.controller('MyInquiryDetailCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+    var id = $stateParams.inquiryId;
+    var companyId = $cookieStore.get("CompanyId");
+
+    var userId = $cookieStore.get("UserId");
+    $http.get(HOST + "api/inquiry/getbyid/" + id, {
+            cache: false
+        })
+        .success(function(response) {
+            $scope.inquiry = response;
+        });
+ 
 });
