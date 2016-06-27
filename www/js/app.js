@@ -404,7 +404,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCookies'])
       });
 
 
-    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/login');
 
-    $urlRouterProvider.otherwise('/tab/dash');
+    // $urlRouterProvider.otherwise('/tab/dash');
   });
