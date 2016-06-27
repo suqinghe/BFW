@@ -552,3 +552,99 @@ app.controller('MyInquiryDetailCtrl', function($scope, $http, $state, $cookieSto
         });
  
 });
+
+
+
+
+
+
+app.controller('MyQuoteCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+
+    $scope.GetMyQuote = function() {
+        var companyid = $stateParams.CompanyID;
+        var status = $stateParams.Status;
+        $http.get(HOST + "api/quote/GetByStatus?companyId=" + companyid + "&status=" + status, {
+                cache: false
+            })
+            .success(
+                function(response) {
+                    $scope.myQuotes = response;
+                }
+            );
+    }
+    $scope.doRefresh = function() {
+        $scope.GetMyQuote();
+        $scope.$broadcast("scroll.refreshComplete");
+    };
+
+    $scope.GetMyQuote();
+});
+
+app.controller('MyQuoteDetailCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+    var id = $stateParams.quoteId;  
+    $http.get(HOST + "api/quote/getbyid/" + id, {
+            cache: false
+        })
+        .success(function(response) {
+            $scope.quote = response;
+        });
+ 
+});
+
+
+
+
+
+app.controller('MyFinancingCtrl', function($scope, $http, $state, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+
+    $scope.GetMyFinancing = function() {
+        var companyid = $stateParams.CompanyID;
+        var status = $stateParams.Status;
+        $http.get(HOST + "api/financing/GetByStatus?companyId=" + companyid + "&status=" + status, {
+                cache: false
+            })
+            .success(
+                function(response) {
+                    $scope.myFinancings = response;
+                }
+            );
+    }
+    $scope.doRefresh = function() {
+        $scope.GetMyFinancing();
+        $scope.$broadcast("scroll.refreshComplete");
+    };
+
+    $scope.GetMyFinancing();
+});
+
+app.controller('MyFinancingDetailCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+    var id = $stateParams.financingId; 
+    $http.get(HOST + "api/financing/getbyid/" + id, {
+            cache: false
+        })
+        .success(function(response) {
+            $scope.financing = response;
+        });
+ 
+});
+ 
+
+app.controller('MyLoanRecordCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+    var id = $stateParams.financingId; 
+    $http.get(HOST + "api/financing/GetLoanRecord/" + id, {
+            cache: false
+        })
+        .success(function(response) {
+            $scope.myLoanRecords = response;
+        });
+});
+
+app.controller('MyRepaymentRecordCtrl', function($scope, $http, $state, $cookieStore, $ionicHistory, $ionicPopup, $stateParams, HOST) {
+    var id = $stateParams.financingId; 
+    $http.get(HOST + "api/financing/GetLoanRecord/" + id, {
+            cache: false
+        })
+        .success(function(response) {
+            $scope.myRepaymentRecords = response;
+        });
+});

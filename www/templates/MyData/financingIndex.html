@@ -1,0 +1,25 @@
+<ion-view ng-controller="MyFinancingCtrl"  view-title="我的融资">
+
+	<ion-content>
+		<ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()"></ion-refresher>
+		<div class="item-input-inset" id="searchDiv">
+			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" ng-model="keyword" placeholder="搜索"></label>
+			<button class="button button-clear">取消</button>
+		</div>
+
+		<ion-list>
+			<ion-item class="item-icon-right" collection-repeat="financing in myFinancings | filter:keyword" type="item-text-wrap"
+href="#/tab/myFinancingDetail/{{financing.ID}}">
+				<h2>{{financing.No}}</h2>
+				 <p>申请公司：{{financing.CompanyName}}</p>
+			<p>融资状态：{{financing.Status}}</p>
+			<p>申请金额：{{financing.ApplyAmount}}万</p>
+			<p>批复金额：{{financing.AuditAmount}}万</p>
+		</ion-item>
+	</ion-list>
+</ion-content>
+
+</ion-view>

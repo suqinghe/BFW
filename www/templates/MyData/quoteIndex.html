@@ -1,0 +1,27 @@
+<ion-view ng-controller="MyQuoteCtrl"  view-title="我的报价">
+
+	<ion-content>
+		<ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()"></ion-refresher>
+		<div class="item-input-inset" id="searchDiv">
+			<label class="item-input-wrapper"> <i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" ng-model="keyword" placeholder="搜索"></label>
+			<button class="button button-clear">取消</button>
+		</div>
+
+		<ion-list> 
+			<ion-item class="item-icon-right" collection-repeat="quote in myQuotes|filter:keyword" type="item-text-wrap"
+href="#/tab/quoteDetail/{{quote.ID}}">
+				<h2>{{quote.No}}</h2>
+				<p>产品名称：{{quote.ProductName}}</p>
+				<p>询价公司：{{quote.CompanyName}}</p>
+				<p>询价状态：{{quote.Status}}</p>
+				<p>最小起订量：{{quote.MOQ}}</p>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+
+</ion-view>
+
+ 

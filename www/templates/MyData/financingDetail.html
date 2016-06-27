@@ -1,0 +1,34 @@
+<ion-view view-title="融资详情">
+  <ion-content ng-controller="MyFinancingDetailCtrl">
+    <div class="list">
+      <ion-item >
+        融资编号
+        <span class="item-note">{{financing.No}}</span>
+      </ion-item>
+      <ion-item >
+        融资项目
+        <span class="item-note">{{financing.ProjectName}}</span>
+      </ion-item>
+      <ion-item >
+        融资状态
+        <span class="item-note">{{financing.StrStatus}}</span>
+      </ion-item>
+      <ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/myLoanRecords/{{financing.ID}}">
+        放款状态
+        <span class="item-note">{{financing.StrLoanStatus}}</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-href="#/tab/myRepaymnetRecords/{{financing.ID}}">
+        还款状态
+        <span class="item-note">{{financing.StrRepaymentStatus}}</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      
+      <div class="item item-divider">初审意见</div>
+      <span class="item-remark">{{financing.FirstAuditRemark}}</span>
+      <div class="item item-divider">终审意见</div>
+      <span class="item-remark">{{financing.FinalAuditRemark}}</span>
+    </div>
+  </ion-content>
+</ion-view>
+ 

@@ -1,0 +1,18 @@
+<ion-view ng-controller="MyFinancingCtrl"  view-title="放款计划">
+
+	<ion-content>
+		<ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()"></ion-refresher>
+		<ion-list>
+			<ion-item class="item-icon-right" collection-repeat="item in myLoanRecords" type="item-text-wrap">
+				<p>计划时间：{{item.PlanDate}}</p>
+				<p>计划金额：{{item.PlanAmount}}万</p>
+				<p>执行时间：{{item.ExecuteDate}}</p>
+				<p>执行金额：{{item.ExecuteAmount}}万</p>
+				<p>计划状态：{{item.Status}}</p>
+				<p>备注：{{item.Remark}}</p>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

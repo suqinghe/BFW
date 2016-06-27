@@ -352,8 +352,59 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCookies'])
             controller: 'MyInquiryDetailCtrl'
           }
         }
+      }).state('tab.MyQuote', {
+        url: '/quotes/:CompanyID/:Status',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/quoteIndex.html',
+            controller: 'MyQuoteCtrl'
+          }
+        }
+      }).state('tab.quoteDetail', {
+        url: '/quoteDetail/:quoteId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/quoteDetail.html',
+            controller: 'MyQuoteDetailCtrl'
+          }
+        }
+      }).state('tab.MyFinancing', {
+        url: '/myFinancing/:CompanyID/:Status',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/financingIndex.html',
+            controller: 'MyFinancingCtrl'
+          }
+        }
+      }).state('tab.financingDetail', {
+        url: '/myFinancingDetail/:financingId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/financingDetail.html',
+            controller: 'MyFinancingDetailCtrl'
+          }
+        }
+      }).state('tab.LoanRecords', {
+        url: '/myLoanRecords/:financingId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/loanRecords.html',
+            controller: 'MyLoanRecordCtrl'
+          }
+        }
+      })
+      .state('tab.RepaymentRecords', {
+        url: '/myRepaymnetRecords/:financingId',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/MyData/repaymentRecords.html',
+            controller: 'MyRepaymentRecordCtrl'
+          }
+        }
       });
 
 
-    $urlRouterProvider.otherwise('/login');
+    // $urlRouterProvider.otherwise('/login');
+
+    $urlRouterProvider.otherwise('/tab/dash');
   });

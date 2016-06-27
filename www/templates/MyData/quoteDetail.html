@@ -1,0 +1,44 @@
+<ion-view view-title="报价详情">
+  <ion-content ng-controller="MyQuoteDetailCtrl">
+    <div class="list">
+     <ion-item >
+        报价编号
+        <span class="item-note">{{quote.No}}</span>
+      </ion-item>
+      <ion-item >
+        报价产品
+        <span class="item-note">{{quote.ProductName}}</span>
+      </ion-item>
+ <ion-item >
+        产品价格
+        <span class="item-note">{{quote.Price}}/{{quote.Unit}}</span>
+      </ion-item>
+       <ion-item >
+        最小起订量
+        <span class="item-note">{{quote.MOQ}}{{quote.Unit}}</span>
+      </ion-item>
+      <div class="item item-divider">报价描述</div>
+      <span class="item-remark">{{quote.Description}}</span>
+      <div class="item item-divider">报价回复</div>
+      <span class="item-remark">{{quote.Reply}}</span>
+    </div>
+  </ion-content>
+</ion-view>
+<!-- 
+{
+    "CompanyId": 13,
+    "ProductId": 3,
+    "Price": 0,
+    "Unit": null,
+    "MOQ": 5,
+    "Description": "需自提",
+    "Reply": null,
+    "ProductName": null,
+    "CompanyName": null,
+    "Status": "未回复",
+    "ID": 1,
+    "No": "Q00001",
+    "Remark": null,
+    "Name": null,
+    "Creator": 17
+} -->
